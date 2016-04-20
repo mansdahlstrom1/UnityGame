@@ -16,6 +16,6 @@ public class ScrollingBackground : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         float newPosition = Mathf.Repeat(Time.time * speed, tileSizeZ);
-        transform.position = startPosition + Vector3.forward * newPosition;
+        transform.position = startPosition + Vector3.down * newPosition;
     }
 }
