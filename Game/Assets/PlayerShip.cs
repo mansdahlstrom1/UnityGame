@@ -8,7 +8,12 @@ public class PlayerShip : MonoBehaviour {
     private Vector3 startPos;
     private Vector3 endPos;
     private Quaternion startRotation;
+    public float speed = 10;
+    public float acceleration = 0.1f; 
     float rotateDeg = 0.0f;
+    private string newKeyState = "";
+    private string oldKeyState = "";
+
 
 
     //private int x;
@@ -36,39 +41,49 @@ public class PlayerShip : MonoBehaviour {
         {
             rotateDeg -= 0.01f;
         }
+        if (acceleration > 0.1f)
+        {
+            acceleration -= 0.01f;
+        }
 
     }
 
+    public void rotate(string Direction)
+    {
+        if (Direction.Equals("left")) {
+            transform.Rotate(Vector3.forward * +1);
+        }
+    }
+
+
     public void move (string Direction)
     {
-       
+        if (acceleration <= 1)
+        {
+            acceleration += 0.03f;
+        } 
 
+        float movementSpeed = acceleration * speed;
         if (Direction.Equals("up"))
         {
-            endPos = new Vector3(startPos.x, startPos.y + (float) 0.1, startPos.z);   
+           
+            endPos = new Vector3(startPos.x, startPos.y + movementSpeed, startPos.z);   
         }
 
         if (Direction.Equals("down"))
         {
-            endPos = new Vector3(startPos.x, startPos.y - (float) 0.1, startPos.z);
+            endPos = new Vector3(startPos.x, startPos.y - movementSpeed, startPos.z);
         }
 
         if (Direction.Equals("left"))
         {
-            if (rotateDeg > -0.5f)
-                rotateDeg += 0.02f;
-
- 
-
-            endPos = new Vector3(startPos.x - (float) 0.1, startPos.y, startPos.z);
+            endPos = new Vector3(startPos.x - movementSpeed, startPos.y, startPos.z);
         }
 
         if (Direction.Equals("right"))
         {
-            if (rotateDeg < 0.5f)
-                rotateDeg += 0.02f;
 
-            endPos = new Vector3(startPos.x + (float) 0.1, startPos.y, startPos.z);
+            endPos = new Vector3(startPos.x + movementSpeed, startPos.y, startPos.z);
 
         }
 
@@ -76,16 +91,10 @@ public class PlayerShip : MonoBehaviour {
 
 
         transform.position = Vector3.Lerp(startPos, endPos, Time.time - timer);
-        transform.rotation = new Quaternion(startRotation.x , startRotation.y + rotateDeg  , startRotation.z, 0);
-        //Debug.Log(rotateDeg);
 
         startPos = endPos;
 
-        if (Direction.Equals("escape"))
-        {
-            string output = "startRotation.Y = " + startRotation.y + " Rotation.y right now = " + transform.rotation.y.ToString();
-            Debug.Log(output);
+        oldKeyState = Direction;
 
-        }
     }
 }
