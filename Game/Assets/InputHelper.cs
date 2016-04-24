@@ -50,6 +50,11 @@ public class InputHelper : MonoBehaviour
             direction = "left";
             ship.rotate(direction);
         }
+        if (Input.GetKey(KeyCode.Space))
+        {
+            Debug.Log("Pew!");
+            ship.Fire();
+        }
 
         oldKeyState = Input.inputString;
     }

@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System;
 
 public class PlayerShip : MonoBehaviour {
 
@@ -14,6 +16,9 @@ public class PlayerShip : MonoBehaviour {
     private string newKeyState = "";
     private string oldKeyState = "";
 
+    private Missile missile;
+    private int missileCount = 0;
+
 
 
     //private int x;
@@ -23,6 +28,7 @@ public class PlayerShip : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
         timer = Time.time;
         startPos = transform.position;
         endPos = new Vector3(2, 3, 2);
@@ -55,6 +61,11 @@ public class PlayerShip : MonoBehaviour {
         }
     }
 
+    public void Fire()
+    {
+        Debug.Log("Fire");
+        
+    }
 
     public void move (string Direction)
     {
