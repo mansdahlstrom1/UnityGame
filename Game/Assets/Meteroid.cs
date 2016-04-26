@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Missile : MonoBehaviour
+public class Meteroid : MonoBehaviour
 {
+    public float rotationSpeed;
     public float speed;
 
-    private PlayerShip myShip;
     private Rigidbody2D r2d;
 
     // Use this for initialization
@@ -15,26 +15,23 @@ public class Missile : MonoBehaviour
         r2d.velocity = new Vector2(0.0f, speed);
     }
 
-    public void Init(PlayerShip ship)
-    {
-        myShip = ship;
-    }
-
     // Update is called once per frame
     void Update()
     {
+        transform.Rotate(Vector3.forward * rotationSpeed);
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Missile Collision!");
+        Debug.Log("Meteroid Collision!");
 
         if (col.gameObject.name == "Meteroid")
         {
+
             //Destroy(col.gameObject);
         }
 
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     void OnBecameInvisible()
