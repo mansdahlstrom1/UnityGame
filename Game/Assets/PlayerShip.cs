@@ -87,7 +87,6 @@ public class PlayerShip : MonoBehaviour {
 
         }
 
-        this.transform = 
 
 
         transform.position = Vector3.Lerp(startPos, endPos, Time.time - timer);
