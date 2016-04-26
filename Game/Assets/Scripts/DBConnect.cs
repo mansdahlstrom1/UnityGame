@@ -1,21 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
-using MySql.Data.MySqlClient;
+//using MySql.Data.MySqlClient;
 using System;
-using System.Drawing;
 
 public class DBConnect : MonoBehaviour
-{
+{/*
     MySqlConnection conn;
     string myConnectionString = null;
     MySqlDataReader dataReader;
 
-    public DBConnect() { 
-   
+    public DBConnect()
+    {
+
         myConnectionString = "server=89.236.61.189;database=nyancat;uid=remote_user;pwd=PASSWORD;";
 
         try
-            {
+        {
             conn = new MySqlConnection();
             conn.ConnectionString = myConnectionString;
 
@@ -24,7 +24,7 @@ public class DBConnect : MonoBehaviour
         {
             Debug.Log(ex);
         }
-     }
+    }
 
     public Player getPlayerByUsername(String username)
     {
@@ -59,5 +59,5 @@ public class DBConnect : MonoBehaviour
         return p1;
 
     }
-
+    */
 }

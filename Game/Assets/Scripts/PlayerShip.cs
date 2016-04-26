@@ -17,26 +17,36 @@ public class PlayerShip : MonoBehaviour
     private float nextFire = 0.0f;
 
     private int playerNumber = 1;
-    public int PlayerNumber {  get { return playerNumber; } set { playerNumber = value; } }
-    
+    public int PlayerNumber { get { return playerNumber; } set { playerNumber = value; } }
+
     // Use this for initialization
     void Start()
     {
         r2d = GetComponent<Rigidbody2D>();
     }
-    
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButton("Fire") && Time.time > nextFire)
-        {   
+        {
             nextFire = Time.time + fireRate;
+
             Instantiate(missile, missileSpawn.position, missileSpawn.rotation);
         }
 
         velocity.x = Input.GetAxis("Horizontal") * moveSpeed;
         velocity.y = Input.GetAxis("Vertical") * moveSpeed;
 
+        r2d.velocity = velocity;
     }
 
+    void OnTriggerEnter2D(Collider2D col)
+    {
+
+        if (col.gameObject.name == "Meteroid(Clone)")
+        {
+            Destroy(gameObject);
+        }
+    }
 }

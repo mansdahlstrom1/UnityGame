@@ -11,7 +11,7 @@ public class Login : MonoBehaviour {
     public string Password { set { password = value; } get { return password;}}
 
 
-
+    /*
     DBConnect con = new DBConnect();
     public void loginUser()
     {
@@ -33,7 +33,7 @@ public class Login : MonoBehaviour {
             MenuScript.ChangeScene("MainMenu");
         }
     }
-
+    */
 
    
 
