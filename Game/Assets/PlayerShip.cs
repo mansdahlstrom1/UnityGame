@@ -38,4 +38,5 @@ public class PlayerShip : MonoBehaviour
         velocity.y = Input.GetAxis("Vertical") * moveSpeed;
 
     }
+
 }
