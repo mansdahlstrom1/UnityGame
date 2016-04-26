@@ -12,4 +12,9 @@ public class MenuScript : MonoBehaviour {
     {
         Application.Quit();
     }
+
+    public void Options()
+    {
+        Canvas canvas = this.GetComponent<Canvas>();
+    }
 }
