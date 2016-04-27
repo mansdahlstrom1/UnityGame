@@ -11,7 +11,6 @@ public class Login : MonoBehaviour
     public string Username { set { username = value; } get { return username; } }
     public string Password { set { password = value; } get { return password; } }
 
-    /*
     DBConnect con = new DBConnect();
     public void loginUser()
     {
@@ -19,11 +18,11 @@ public class Login : MonoBehaviour
         {
             Player p1 = con.getPlayerByUsername(Username);
 
-            //Debug.Log(p1.Username);
+            
+            Debug.Log(p1.Username);
             if (p1.CheckLogin(Password))
             {
                 Debug.Log("Logged in!");
-                Utils.ChangeScene("MainMenu");
 
             }
             else
@@ -32,13 +31,13 @@ public class Login : MonoBehaviour
 
             }
 
-            //Temp
+            Utils.ChangeScene("MainMenu");
+
 
 
             
         }
     }
-    */
 
 
 }

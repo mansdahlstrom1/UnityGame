@@ -5,21 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour {
 
-    Text iField;
     Player p = new Player();
 
 
-    public MenuScript()
-    {
-        iField = GetComponent<Text>();
-        setPlayerTexts();
-        Debug.Log("We are starting");
-    }
+
 
     void start()
     {
-        setPlayerTexts();
-        Debug.Log("We are starting");
     }
 
     void update()
@@ -27,7 +19,7 @@ public class MenuScript : MonoBehaviour {
 
     }
 
-    public static void ChangeScene(string sceneName)
+    public void ChangeScene(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
@@ -41,12 +33,5 @@ public class MenuScript : MonoBehaviour {
     {
         Canvas canvas = this.GetComponent<Canvas>();
     }
-
-    public void setPlayerTexts()
-    {
-        Debug.Log("Name = " + iField.text.ToString());
-        iField.text = p.Username;
-    }
-
     
 }
