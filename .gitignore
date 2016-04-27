@@ -28,3 +28,4 @@ sysinfo.txt
 Game/Library/metadata**
 Game/Library**
 Game/Temp**
+!Game/Assets/plugins/*.dll
