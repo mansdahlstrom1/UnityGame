@@ -4,19 +4,19 @@ using System.Collections;
 public class WarningIndicator : MonoBehaviour
 {
     private int warnTime = 4; //seconds
-    private float timer;
+    private float startTime;
     // Use this for initialization
     void Start()
     {
-        timer = Time.time;
+        startTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (timer + warnTime < Time.time)
+        if (startTime + warnTime < Time.time)
         {
-            Destroy(gameObject);
+            
         }
     }
 }
