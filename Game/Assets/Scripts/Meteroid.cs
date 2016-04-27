@@ -12,16 +12,14 @@ public class Meteroid : MonoBehaviour
     void Start()
     {
         r2d = GetComponent<Rigidbody2D>();
+
         r2d.velocity = new Vector2(0.0f, speed);
-        
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.Rotate(Vector3.forward * rotationSpeed);
-
-        r2d.AddTorque(0.45f);
     }
 
     void OnTriggerEnter2D(Collider2D col)

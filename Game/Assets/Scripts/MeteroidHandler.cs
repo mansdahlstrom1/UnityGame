@@ -21,10 +21,11 @@ public class MeteroidHandler : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            startPosition = new Vector3(Random.Range(-1100.0f, 1100.0f), 700);
+            startPosition = new Vector3(Random.Range(-1100.0f, 1100.0f), 900);
             Instantiate(meteroid, startPosition, Quaternion.identity);
-            startPosition.y = 591.4f;
-            Instantiate(warningIndicator, startPosition, Quaternion.identity);
+
+            startPosition.y = 592f;
+            //Instantiate(warningIndicator, startPosition, Quaternion.identity);
         }
     }
 }
