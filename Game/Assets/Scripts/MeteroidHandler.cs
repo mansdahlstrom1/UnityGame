@@ -18,13 +18,15 @@ public class MeteroidHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+           
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
             startPosition = new Vector3(Random.Range(-1100.0f, 1100.0f), 700);
             Instantiate(meteroid, startPosition, Quaternion.identity);
             startPosition.y = 591.4f;
-            Instantiate(warningIndicator, startPosition, Quaternion.identity);
+          //  Instantiate(warningIndicator, startPosition, Quaternion.identity);
         }
+        
     }
 }

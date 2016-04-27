@@ -48,6 +48,7 @@ public class DBConnect : MonoBehaviour
         while (rdr.Read())
         {
             p1.Username = rdr.GetString("username");
+            p1.Hash = rdr.GetString("hash");
             p1.Activty = (DateTime)rdr.GetMySqlDateTime("activity");
             p1.Coins = rdr.GetInt32("coins");
             p1.Created = (DateTime)rdr.GetMySqlDateTime("created");

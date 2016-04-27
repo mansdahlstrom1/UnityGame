@@ -20,24 +20,14 @@ public class Player : MonoBehaviour {
 
     public bool CheckLogin(string password)
     {
-        Debug.Log("check input: " + password);
-        Debug.Log("check object.hash: " + Hash);
 
-        string decryptedHash = getDeryptedHash();
-
-        if (password.Equals(decryptedHash))
+        string HashedPassword = Password.Decrypt(password);
+        Debug.Log("from Utils = " + HashedPassword);
+        Debug.Log("from Player = " + Hash);
+        if (Hash.Equals(HashedPassword))
             return true;
         else 
             return false;
     }
 
-    public string getDeryptedHash()
-    {
-        string password;
-
-        //password = Sha164 (or something..) this.hash;
-        password = Hash;
-
-        return password;
-    }
 }

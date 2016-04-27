@@ -23,14 +23,19 @@ public class Login : MonoBehaviour
             if (p1.CheckLogin(Password))
             {
                 Debug.Log("Logged in!");
+                Utils.ChangeScene("MainMenu");
+
             }
             else
             {
-                Debug.Log("not Logged in");
+                Debug.Log("Password or Username was incorrect");
+
             }
 
             //Temp
-            MenuScript.ChangeScene("MainMenu");
+
+
+            
         }
     }
 
