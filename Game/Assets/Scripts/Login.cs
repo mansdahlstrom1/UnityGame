@@ -2,16 +2,16 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class Login : MonoBehaviour {
+public class Login : MonoBehaviour
+{
 
     private string username;
     private string password;
 
-    public string Username { set { username = value; } get { return username;}}
-    public string Password { set { password = value; } get { return password;}}
+    public string Username { set { username = value; } get { return username; } }
+    public string Password { set { password = value; } get { return password; } }
 
 
-    /*
     DBConnect con = new DBConnect();
     public void loginUser()
     {
@@ -33,8 +33,7 @@ public class Login : MonoBehaviour {
             MenuScript.ChangeScene("MainMenu");
         }
     }
-    */
 
-   
+
 
 }

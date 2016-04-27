@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System;
 
 public class DBConnect : MonoBehaviour
-{/*
+{
     MySqlConnection conn;
     string myConnectionString = null;
     MySqlDataReader dataReader;
@@ -59,5 +59,4 @@ public class DBConnect : MonoBehaviour
         return p1;
 
     }
-    */
 }
