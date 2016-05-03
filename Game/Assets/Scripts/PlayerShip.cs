@@ -3,35 +3,26 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.Events;
+using Assets.Scripts;
 
-public class PlayerShip : MonoBehaviour
+public class PlayerShip : Ship
 {
-    public List<Vector2> missileSpawnPoints;
-    public GameObject missile;
-    public Transform missileSpawn;
-    public float fireRate;
-    public int moveSpeed;
-
-    private Rigidbody2D r2d;
-    private Vector2 velocity = new Vector2(0.0f, 0.0f);
-
     private Rect shipBounds;
     private Rect cameraRect;
-
-    private float nextFire = 0.0f;
+    
     public int playerNumber;
+
     private CharacterController characterController;
-
-
+    
     //public int PlayerNumber { get { return playerNumber; } set { playerNumber = value; } }
 
     // Use this for initialization
     void Start()
     {
-
         characterController = GetComponent<CharacterController>();
 
         r2d = GetComponent<Rigidbody2D>();
+
         Renderer renderer = GetComponent<Renderer>();
         shipBounds = new Rect(
             transform.position.x,
@@ -63,14 +54,9 @@ public class PlayerShip : MonoBehaviour
         //TEST
 
 
-        if (Input.GetButton("Fire") && Time.time > nextFire)
+        if (Input.GetButton("Fire"))
         {
-            nextFire = Time.time + fireRate;
-
-            foreach (Vector2 spawnPoint in missileSpawnPoints)
-            {
-                Instantiate(missile, (/*missileSpawn.position*/ transform.position + (Vector3)spawnPoint), Quaternion.identity);
-            }
+            Shoot();
         }
 
 
@@ -105,14 +91,5 @@ public class PlayerShip : MonoBehaviour
            Mathf.Clamp(transform.position.x, (cameraRect.xMin + (shipBounds.width / 2)), (cameraRect.xMax - (shipBounds.width / 2))),
            Mathf.Clamp(transform.position.y, (cameraRect.yMin + (shipBounds.height / 2)), (cameraRect.yMax - (shipBounds.height / 2))),
            transform.position.z);
-    }
-
-    public event CollisionHandler Crash;
-    public EventArgs e = null;
-    public delegate void CollisionHandler(PlayerShip ship, GameObject obj, EventArgs e);
-
-    void OnTriggerEnter2D(Collider2D col)
-    {
-        Crash(this, col.gameObject, e);
     }
 }
