@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Missile : MonoBehaviour
 {
@@ -34,11 +35,6 @@ public class Missile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-
-        if (col.gameObject.name == "Asteroid(Clone)")
-        {
-            Destroy(gameObject);
-        }
     }
 
     void OnBecameInvisible()

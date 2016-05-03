@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Asteroid : MonoBehaviour
 {
@@ -24,9 +25,10 @@ public class Asteroid : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        //Notify GameScript todo
-
-        Destroy(gameObject);
+        if (col.gameObject.tag.Equals("Missile") || col.gameObject.tag.Equals("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnBecameInvisible()
