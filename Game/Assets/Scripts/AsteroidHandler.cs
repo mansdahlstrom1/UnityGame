@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MeteroidHandler : MonoBehaviour
+public class AsteroidHandler : MonoBehaviour
 {
     private Vector3 startPosition;
-    public GameObject meteroid, warningIndicator;
+    public GameObject asteroid;
 
     private float nextSpawn = 2.0f;
     public float spawnRate;
-
-
+    
     // Use this for initialization
     void Start()
     {
@@ -23,11 +22,8 @@ public class MeteroidHandler : MonoBehaviour
         if (Time.time > nextSpawn)
         {
             nextSpawn = Time.time + spawnRate;
-            startPosition = new Vector3(Random.Range(-1100.0f, 1100.0f), 900);
-            Instantiate(meteroid, startPosition, Quaternion.identity);
-
-            startPosition.y = 592f;
-            //Instantiate(warningIndicator, startPosition, Quaternion.identity);
+            startPosition = new Vector3(Random.Range(-700.0f, 700.0f), 650);
+            Instantiate(asteroid, startPosition, Quaternion.identity);
         }
     }
 }

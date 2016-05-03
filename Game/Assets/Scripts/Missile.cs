@@ -4,6 +4,7 @@ using System.Collections;
 public class Missile : MonoBehaviour
 {
     public float speed;
+    public Vector3 rotation;
 
     private PlayerShip myShip;
     private Rigidbody2D r2d;
@@ -26,10 +27,15 @@ public class Missile : MonoBehaviour
 
     }
 
+    void FixedUpdate()
+    {
+        transform.Rotate(rotation);
+    }
+
     void OnTriggerEnter2D(Collider2D col)
     {
 
-        if (col.gameObject.name == "Meteroid(Clone)")
+        if (col.gameObject.name == "Asteroid(Clone)")
         {
             Destroy(gameObject);
         }

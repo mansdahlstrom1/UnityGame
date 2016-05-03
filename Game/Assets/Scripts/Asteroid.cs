@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Meteroid : MonoBehaviour
+public class Asteroid : MonoBehaviour
 {
     public float rotationSpeed;
     public float speed;
@@ -24,15 +24,7 @@ public class Meteroid : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-
-        if (col.gameObject.name == "Missile")
-        {
-            Debug.Log("Meteroid colliding with missile");
-        }
-        else if (col.gameObject.name == "PlayerShip")
-        {
-            Debug.Log("Meteroid colliding with playership");
-        }
+        //Notify GameScript todo
 
         Destroy(gameObject);
     }

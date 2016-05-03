@@ -3,18 +3,16 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MenuScript : MonoBehaviour {
+public class MenuScript : MonoBehaviour
+{
 
     Player p = new Player();
-
-
-
-
-    void start()
+    
+    void Start()
     {
     }
 
-    void update()
+    void Update()
     {
 
     }
@@ -33,5 +31,5 @@ public class MenuScript : MonoBehaviour {
     {
         Canvas canvas = this.GetComponent<Canvas>();
     }
-    
+
 }

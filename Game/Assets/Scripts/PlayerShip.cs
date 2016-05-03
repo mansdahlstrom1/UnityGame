@@ -2,27 +2,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.Events;
 
 public class PlayerShip : MonoBehaviour
 {
-
-    private Rigidbody2D r2d;
-    public Vector2 velocity = new Vector2(0.0f, 0.0f);
+    public List<Vector2> missileSpawnPoints;
     public GameObject missile;
     public Transform missileSpawn;
     public float fireRate;
     public int moveSpeed;
-    public Rect shipBounds;
-    public Rect cameraRect;
+
+    private Rigidbody2D r2d;
+    private Vector2 velocity = new Vector2(0.0f, 0.0f);
+
+    private Rect shipBounds;
+    private Rect cameraRect;
 
     private float nextFire = 0.0f;
+    public int playerNumber;
+    private CharacterController characterController;
 
-    private int playerNumber = 1;
-    public int PlayerNumber { get { return playerNumber; } set { playerNumber = value; } }
+
+    //public int PlayerNumber { get { return playerNumber; } set { playerNumber = value; } }
 
     // Use this for initialization
     void Start()
     {
+
+        characterController = GetComponent<CharacterController>();
+
         r2d = GetComponent<Rigidbody2D>();
         Renderer renderer = GetComponent<Renderer>();
         shipBounds = new Rect(
@@ -48,11 +56,21 @@ public class PlayerShip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //TEST
+        //string joystickString = playerNumber.ToString();
+        //velocity.x = Input.GetAxis("LeftJoystickX_P" + joystickString) * moveSpeed;
+        //velocity.y = Input.GetAxis("LeftJoystickY_P" + joystickString) * moveSpeed;
+        //TEST
+
+
         if (Input.GetButton("Fire") && Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
 
-            Instantiate(missile, missileSpawn.position, missileSpawn.rotation);
+            foreach (Vector2 spawnPoint in missileSpawnPoints)
+            {
+                Instantiate(missile, (/*missileSpawn.position*/ transform.position + (Vector3)spawnPoint), Quaternion.identity);
+            }
         }
 
 
@@ -61,22 +79,23 @@ public class PlayerShip : MonoBehaviour
 
         if (velocity.x > 0)
         {
-            if (transform.rotation.y < 0.3)
-                transform.Rotate(0, 1f, 0);
+            if (transform.rotation.y < 0.4)
+                transform.Rotate(0, 2.5f, 0);
         }
-        else if (velocity.x < 0 && transform.rotation.y > -0.3)
+        else if (velocity.x < 0)
         {
-            transform.Rotate(0, -2.5f, 0);
+            if (transform.rotation.y > -0.4)
+                transform.Rotate(0, -2.5f, 0);
         }
         else
         {
             if (transform.rotation.y > 0)
             {
-                transform.Rotate(0, -0.5f, 0);
+                transform.Rotate(0, -2f, 0);
             }
-            else if (transform.rotation.y > 0)
+            else if (transform.rotation.y < 0)
             {
-                transform.Rotate(0, 0.5f, 0);
+                transform.Rotate(0, 2f, 0);
             }
         }
 
@@ -88,12 +107,12 @@ public class PlayerShip : MonoBehaviour
            transform.position.z);
     }
 
+    public event CollisionHandler Crash;
+    public EventArgs e = null;
+    public delegate void CollisionHandler(PlayerShip ship, GameObject obj, EventArgs e);
+
     void OnTriggerEnter2D(Collider2D col)
     {
-
-        if (col.gameObject.name == "Meteroid(Clone)")
-        {
-            transform.position = new Vector3(0, -300);
-        }
+        Crash(this, col.gameObject, e);
     }
 }
