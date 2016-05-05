@@ -5,12 +5,12 @@ using System.Web;
 
 public class Options
 {
-    public int key_down;
-    public int key_left;
-    public int key_right;
-    public int key_shoot;
-    public int key_up;
-    public int master_sound;
+    private int key_down;
+    private int key_left;
+    private int key_right;
+    private int key_shoot;
+    private int key_up;
+    private int master_sound;
 
     public int Key_down { get { return key_down; } set { key_down = value; } }
     public int Key_left { get { return key_left; } set { key_left = value; } }

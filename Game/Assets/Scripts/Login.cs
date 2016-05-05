@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 using System.Net;
+using DBConnector;
+using System.Collections.Generic;
 
 public class Login : MonoBehaviour
 {
@@ -16,23 +18,20 @@ public class Login : MonoBehaviour
     {
         if (Username.Length != 0 && Password.Length != 0)
         {
-            //User
-            string url = "http://81.186.252.203/webservice/VetrarbrautinWebService.php?op=findUserByUsername&username=" + username;
-            var json = new WebClient().DownloadString(url);
-            Debug.Log(json);
-            Player p = JsonUtility.FromJson<Player>(json);
+            DBController controller = new DBController();
+            Player p = controller.GetCompletePlayer(username);
 
-            // OPtions
-            string url2 = "http://81.186.252.203/webservice/VetrarbrautinWebService.php?op=findUserOptions&username=" + username;
-            var json2 = new WebClient().DownloadString(url2);
-            Debug.Log(json2);
-            Options o = JsonUtility.FromJson<Options>(json2);
-            Debug.Log(o.Master_sound);
+
             if (p == null)
             {
                 Debug.Log("player is null");
             } else
             {
+                List<Round> rlist = p.PlayerRounds;
+                for (var i = 0; i < rlist.Count; i++)
+                {
+                    Debug.Log(rlist[i].Roundid);
+                }
                 Debug.Log(p.Username);
             }
             /*
