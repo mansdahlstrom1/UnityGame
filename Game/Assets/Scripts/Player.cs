@@ -11,9 +11,9 @@ public class Player {
     static int coins;
     static DateTime created;
     static string hash;
-    private Options options;
-    private List<Round> playerRounds;
-    private List<Upgrade> playerUpgrades;
+    static Options options;
+    static List<Round> playerRounds;
+    static List<Upgrade> playerUpgrades;
 
     public string Username { get { return username; } set { username = value; } }
     public DateTime Activty { get { return activity; } set { activity = value; } }
@@ -35,6 +35,19 @@ public class Player {
             return true;
         else 
             return false;
+    }
+
+    public int getBestScore()
+    {
+        int bestScore = 0;
+        for (var i = 0; i < playerRounds.Count; i++)
+        {
+            if (playerRounds[i].Score > bestScore)
+            {
+                bestScore = playerRounds[i].Score;
+            }
+        }
+        return bestScore;
     }
 
 }

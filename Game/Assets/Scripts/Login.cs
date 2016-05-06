@@ -24,33 +24,20 @@ public class Login : MonoBehaviour
 
             if (p == null)
             {
-                Debug.Log("player is null");
+                Debug.Log("Invalid Username, couldn't find a User with that username");
             } else
             {
-                List<Round> rlist = p.PlayerRounds;
-                for (var i = 0; i < rlist.Count; i++)
+                if (p.CheckLogin(Password))
                 {
-                    Debug.Log(rlist[i].Roundid);
+                   Debug.Log("Logged in!");
+
                 }
-                Debug.Log(p.Username);
+                else
+                {
+                    Debug.Log("Password incorrect, try again");
+                }
             }
-            /*
-            if (p1.CheckLogin(Password))
-            {
-                Debug.Log("Logged in!");
-
-            }
-            else
-            {
-                Debug.Log("Password or Username was incorrect");
-
-            }
-
             Utils.ChangeScene("MainMenu");
-            */
-
-
-
         }
     }
 

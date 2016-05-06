@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
 using Assets.Scripts;
+using UnityEngine.SceneManagement;
 
 public class GameScript : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class GameScript : MonoBehaviour
     //Game Logic
     public int playerLives = 3;
     public int score = 0;
-
+    public bool isPause = false;
     //GUI
     GUIStyle labelStyle = new GUIStyle();
 
@@ -56,7 +57,14 @@ public class GameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            isPause = !isPause;
+        }
+        if (isPause)
+            Time.timeScale = 0;
+        else
+            Time.timeScale = 1;
     }
 
     void FixedUpdate()
@@ -86,12 +94,34 @@ public class GameScript : MonoBehaviour
         }
     }
 
+    void theMainMenu(int windowID)
+    {
+        if (GUI.Button(new Rect(65, 30, 120, 40), "Contiune"))
+            isPause = false;
+        if (GUI.Button(new Rect(65, 70, 120, 40), "This is to hard..."))
+            SceneManager.LoadScene("GameOVer");
+
+    }
+    Rect centerRectangle(Rect someRect)
+    {
+        someRect.x = (Screen.width - someRect.width) / 2;
+        someRect.y = (Screen.height - someRect.height) / 2;
+        return someRect;
+    }
+
+
+
     void OnGUI()
     {
-
         GUI.contentColor = Color.red;
         GUI.Label(new Rect(10, 10, 200, 22), "Lives: " + playerLives);
         GUI.Label(new Rect(10, 32, 200, 22), "Score: " + score);
+
+        if (isPause)
+        {
+            GUI.Window(0, centerRectangle(new Rect(100, 100, 250 ,120)), theMainMenu, "Pause Menu");
+
+        }
     }
 
     void CollisionHandler(MonoBehaviour me, GameObject other, EventArgs e)

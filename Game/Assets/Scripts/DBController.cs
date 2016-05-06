@@ -31,18 +31,41 @@ namespace DBConnector
         public List<Round> getPlayerRounds(string username)
         {
             string url = BaseURL + "op=findUserRounds&username=" + username;
-            var json = new WebClient().DownloadString(url);
-            RoundDataList rounds = JsonUtility.FromJson<RoundDataList>(json);
-
+            string json = new WebClient().DownloadString(url);
+            string newJson = "{\"Items\":" + json + "}";
+            Debug.Log(newJson);
+            RoundData[] roundDataList;
+            roundDataList = JsonHelper.FromJson<RoundData>(newJson);
             List<Round> playerRounds = new List<Round>();
-            //for (var i = 0; i < rounds.roundList.Count; i++)
-            for (var i = 0; i < rounds.roundList.Length; i++)
+
+            Debug.Log(roundDataList.Length);
+            for (var i = 0; i < roundDataList.Length; i++)
             {
-                RoundData rd = rounds.roundList[i];
+                RoundData rd = roundDataList[i];
                 Round r = rd.getRound();
                 playerRounds.Add(r);
             }
             return playerRounds;
+        }
+
+        public List<Upgrade> getPlayerUpgrades(string username)
+        {
+            string url = BaseURL + "op=findUserUpgrades&username=" + username;
+            string json = new WebClient().DownloadString(url);
+            string newJson = "{\"Items\":" + json + "}";
+            Debug.Log(newJson);
+            UpgradeData[] upgradeDataList;
+            upgradeDataList = JsonHelper.FromJson<UpgradeData>(newJson);
+            List<Upgrade> playerUpgrades = new List<Upgrade>();
+
+            Debug.Log(upgradeDataList.Length);
+            for (var i = 0; i < upgradeDataList.Length; i++)
+            {
+                UpgradeData ud = upgradeDataList[i];
+                Upgrade u = ud.GetUpgrade();
+                playerUpgrades.Add(u);
+            }
+            return playerUpgrades;
         }
 
         public Player GetCompletePlayer(string username)
@@ -50,6 +73,7 @@ namespace DBConnector
             Player p = GetUserByUsername(username);
             p.Options = GetUserOptions(username);
             p.PlayerRounds = getPlayerRounds(username);
+            p.PlayerUpgrades = getPlayerUpgrades(username);
             return p;
         }
 
@@ -156,5 +180,25 @@ namespace DBConnector
         public RoundData[] roundList;
     }
 
+    public static class JsonHelper
+    {
+        public static T[] FromJson<T>(string json)
+        {
+            Wrapper<T> wrapper = UnityEngine.JsonUtility.FromJson<Wrapper<T>>(json);
+            return wrapper.Items;
+        }
 
+        public static string ToJson<T>(T[] array)
+        {
+            Wrapper<T> wrapper = new Wrapper<T>();
+            wrapper.Items = array;
+            return UnityEngine.JsonUtility.ToJson(wrapper);
+        }
+
+        [Serializable]
+        private class Wrapper<T>
+        {
+            public T[] Items;
+        }
+    }
 }
