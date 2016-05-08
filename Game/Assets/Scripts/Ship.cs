@@ -36,7 +36,7 @@ namespace Assets.Scripts
             }
         }
 
-        void OnTriggerEnter2D(Collider2D col)
+        protected void OnTriggerEnter2D(Collider2D col)
         {
             collisionEvent(this, col.gameObject, e);
         }

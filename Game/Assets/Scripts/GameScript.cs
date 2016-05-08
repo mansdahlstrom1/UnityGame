@@ -16,9 +16,6 @@ public class GameScript : MonoBehaviour
     //GUI
     GUIStyle labelStyle = new GUIStyle();
 
-    //?
-    //public UnityEvent crashEvent;
-
     //Player
     public List<PlayerShip> players;
     //public List<GameObject> playerships;
@@ -119,7 +116,7 @@ public class GameScript : MonoBehaviour
 
         if (isPause)
         {
-            GUI.Window(0, centerRectangle(new Rect(100, 100, 250 ,120)), theMainMenu, "Pause Menu");
+            GUI.Window(0, centerRectangle(new Rect(100, 100, 250, 120)), theMainMenu, "Pause Menu");
 
         }
     }
@@ -129,7 +126,22 @@ public class GameScript : MonoBehaviour
     {
         if (me.tag.Equals("Player") && other.tag.Equals("Enemy"))
         {
-            playerLives--;
+            PlayerShip ship = me as PlayerShip;
+            if (playerLives > 1)
+            {
+                if (!ship.isInvulnerable)
+                    playerLives--;
+            }
+            else
+            {
+                Round r = new Round();
+                r.Score = score;
+                r.Duration = (int) Time.time;
+                r.Roundid = 10;
+                Player p = new Player();
+                p.PlayerRounds.Add(r);
+                SceneManager.LoadScene("GameOver");
+            }
         }
     }
 }

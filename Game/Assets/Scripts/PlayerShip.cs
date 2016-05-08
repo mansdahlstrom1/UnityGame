@@ -13,6 +13,10 @@ public class PlayerShip : Ship
     public int playerNumber;
 
     private CharacterController characterController;
+
+    public bool isInvulnerable;
+    public float respawnTime;
+    public float deathTime;
     
     //public int PlayerNumber { get { return playerNumber; } set { playerNumber = value; } }
 
@@ -53,6 +57,13 @@ public class PlayerShip : Ship
         //velocity.y = Input.GetAxis("LeftJoystickY_P" + joystickString) * moveSpeed;
         //TEST
 
+        if (isInvulnerable)
+        {
+            if(Time.time > deathTime + respawnTime)
+            {
+                isInvulnerable = false;
+            }
+        }
 
         if (Input.GetButton("Fire"))
         {
@@ -91,5 +102,15 @@ public class PlayerShip : Ship
            Mathf.Clamp(transform.position.x, (cameraRect.xMin + (shipBounds.width / 2)), (cameraRect.xMax - (shipBounds.width / 2))),
            Mathf.Clamp(transform.position.y, (cameraRect.yMin + (shipBounds.height / 2)), (cameraRect.yMax - (shipBounds.height / 2))),
            transform.position.z);
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        base.OnTriggerEnter2D(col);
+        if (!isInvulnerable)
+        {
+            isInvulnerable = true;
+            deathTime = Time.time;
+        }
     }
 }
