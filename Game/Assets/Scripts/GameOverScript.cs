@@ -7,6 +7,7 @@ public class GameOverScript : MonoBehaviour
 {
     public Text Score;
     public Text Duration;
+    public Text Coins;
 
     Player p;
     Round playedRound;
@@ -20,7 +21,8 @@ public class GameOverScript : MonoBehaviour
         playedRound = p.PlayerRounds[latestRoundIndex];
         Score.text = playedRound.Score.ToString();
         Duration.text = playedRound.Duration.ToString();
-        conn.createRound(playedRound, p.Username);
+        Coins.text = playedRound.Coins.ToString();
+        conn.CreateRound(playedRound, p.Username);
 
     }
 }

@@ -28,7 +28,7 @@ namespace DBConnector
             return userOptions;
         }
 
-        public List<Round> getPlayerRounds(string username)
+        public List<Round> GetPlayerRounds(string username)
         {
             string url = BaseURL + "op=findUserRounds&username=" + username;
             string json = new WebClient().DownloadString(url);
@@ -42,13 +42,13 @@ namespace DBConnector
             for (var i = 0; i < roundDataList.Length; i++)
             {
                 RoundData rd = roundDataList[i];
-                Round r = rd.getRound();
+                Round r = rd.GetRound();
                 playerRounds.Add(r);
             }
             return playerRounds;
         }
 
-        public List<Upgrade> getPlayerUpgrades(string username)
+        public List<Upgrade> GetPlayerUpgrades(string username)
         {
             string url = BaseURL + "op=findUserUpgrades&username=" + username;
             string json = new WebClient().DownloadString(url);
@@ -72,12 +72,12 @@ namespace DBConnector
         {
             Player p = GetUserByUsername(username);
             p.Options = GetUserOptions(username);
-            p.PlayerRounds = getPlayerRounds(username);
-            p.PlayerUpgrades = getPlayerUpgrades(username);
+            p.PlayerRounds = GetPlayerRounds(username);
+            p.PlayerUpgrades = GetPlayerUpgrades(username);
             return p;
         }
 
-        public void createRound(Round r, string username)
+        public void CreateRound(Round r, string username)
         {
             string url = BaseURL +
                 "op=createRound" +
@@ -85,9 +85,9 @@ namespace DBConnector
                 "&s=" + r.Score +
                 "&d=" + r.Duration +
                 "&c=" + r.Coins;
-            Debug.Log(url);
+           
             string result = new WebClient().DownloadString(url);
-            Debug.Log(result);
+
         }
 
 
@@ -168,7 +168,7 @@ namespace DBConnector
         public int score;
       
 
-        public Round getRound()
+        public Round GetRound()
         {
             Round r = new Round();
             r.Roundid = roundid;

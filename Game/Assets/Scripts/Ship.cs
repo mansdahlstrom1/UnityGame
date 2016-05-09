@@ -16,12 +16,13 @@ namespace Assets.Scripts
         protected Rigidbody2D r2d;
         protected Vector2 velocity;
         protected float nextFire;
+        
+        public bool isActive;
 
         //Collision event
         public event CollisionEvent collisionEvent;
         //public EventArgs e = null;
         public delegate void CollisionEvent(MonoBehaviour me, GameObject obj);
-        //public delegate void CollisionEvent(MonoBehaviour me, GameObject obj);
 
         public void Shoot()
         {

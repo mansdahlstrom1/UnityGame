@@ -22,7 +22,7 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene(sceneName);
     }
 
-    public void exitAppliction()
+    public void ExitAppliction()
     {
         Application.Quit();
     }

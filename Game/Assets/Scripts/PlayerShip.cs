@@ -9,21 +9,20 @@ public class PlayerShip : Ship
 {
     private Rect shipBounds;
     private Rect cameraRect;
-    
     public int playerNumber;
 
-    private CharacterController characterController;
+    //private CharacterController characterController;
 
     public bool isInvulnerable;
     public float respawnTime;
     public float deathTime;
-    
+
     //public int PlayerNumber { get { return playerNumber; } set { playerNumber = value; } }
 
     // Use this for initialization
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        //characterController = GetComponent<CharacterController>();
 
         r2d = GetComponent<Rigidbody2D>();
 
@@ -51,63 +50,69 @@ public class PlayerShip : Ship
     // Update is called once per frame
     void Update()
     {
-        //TEST
-        //string joystickString = playerNumber.ToString();
-        //velocity.x = Input.GetAxis("LeftJoystickX_P" + joystickString) * moveSpeed;
-        //velocity.y = Input.GetAxis("LeftJoystickY_P" + joystickString) * moveSpeed;
-        //TEST
-
-        if (isInvulnerable)
+        //Keep ship within camera
+        if (isActive)
         {
-            if(Time.time > deathTime + respawnTime)
+            //TEST
+            //string joystickString = playerNumber.ToString();
+            //velocity.x = Input.GetAxis("LeftJoystickX_P" + joystickString) * moveSpeed;
+            //velocity.y = Input.GetAxis("LeftJoystickY_P" + joystickString) * moveSpeed;
+            //TEST
+
+            if (isInvulnerable)
             {
-                isInvulnerable = false;
+                if (Time.time > deathTime + respawnTime)
+                {
+                    isInvulnerable = false;
+                }
             }
-        }
 
-        if (Input.GetButton("Fire"))
-        {
-            Shoot();
-        }
-
-
-        velocity.x = Input.GetAxis("Horizontal") * moveSpeed;
-        velocity.y = Input.GetAxis("Vertical") * moveSpeed;
-
-        if (velocity.x > 0)
-        {
-            if (transform.rotation.y < 0.4)
-                transform.Rotate(0, 2.5f, 0);
-        }
-        else if (velocity.x < 0)
-        {
-            if (transform.rotation.y > -0.4)
-                transform.Rotate(0, -2.5f, 0);
-        }
-        else
-        {
-            if (transform.rotation.y > 0)
+            if (Input.GetButton("Fire"))
             {
-                transform.Rotate(0, -2f, 0);
+                Shoot();
             }
-            else if (transform.rotation.y < 0)
+
+
+            velocity.x = Input.GetAxis("Horizontal") * moveSpeed;
+            velocity.y = Input.GetAxis("Vertical") * moveSpeed;
+
+            r2d.velocity = velocity;
+
+            //Rotation
+            if (velocity.x > 0)
             {
-                transform.Rotate(0, 2f, 0);
+                if (transform.rotation.y < 0.4)
+                    transform.Rotate(0, 2.5f, 0);
             }
+            else if (velocity.x < 0)
+            {
+                if (transform.rotation.y > -0.4)
+                    transform.Rotate(0, -2.5f, 0);
+            }
+            else
+            {
+                if (transform.rotation.y > 0)
+                {
+                    transform.Rotate(0, -2f, 0);
+                }
+                else if (transform.rotation.y < 0)
+                {
+                    transform.Rotate(0, 2f, 0);
+                }
+            }
+
+            transform.position = new Vector3(
+               Mathf.Clamp(transform.position.x, (cameraRect.xMin + (shipBounds.width / 2)), (cameraRect.xMax - (shipBounds.width / 2))),
+               Mathf.Clamp(transform.position.y, (cameraRect.yMin + (shipBounds.height / 2)), (cameraRect.yMax - (shipBounds.height / 2))),
+               transform.position.z);
         }
-
-        r2d.velocity = velocity;
-
-        transform.position = new Vector3(
-           Mathf.Clamp(transform.position.x, (cameraRect.xMin + (shipBounds.width / 2)), (cameraRect.xMax - (shipBounds.width / 2))),
-           Mathf.Clamp(transform.position.y, (cameraRect.yMin + (shipBounds.height / 2)), (cameraRect.yMax - (shipBounds.height / 2))),
-           transform.position.z);
     }
 
     new void OnTriggerEnter2D(Collider2D col)
     {
         base.OnTriggerEnter2D(col);
-        if (!isInvulnerable)
+        
+        if (!isInvulnerable && col.gameObject.tag.Equals("Enemy"))
         {
             isInvulnerable = true;
             deathTime = Time.time;

@@ -32,7 +32,7 @@ public class GUIMainMenu : MonoBehaviour {
             GUI.Label(new Rect(40, sh - 100, 200, 30), "<size=20><b>" +  p.Username.ToUpper() + "</b></size>");
             GUI.DrawTexture(new Rect(40, sh - 70, 20, 20), coins);
             GUI.Label(new Rect(60, sh - 70, 200, 30), "<size=16><b>" + p.Coins.ToString() + "</b></size>");
-            GUI.Label(new Rect(40, sh - 50, 200, 30), "<size=16><b>High Score: <color=#e5c100>" + p.getBestScore().ToString() + "</color></b></size>");
+            GUI.Label(new Rect(40, sh - 50, 200, 30), "<size=16><b>High Score: <color=#e5c100>" + p.GetBestScore().ToString() + "</color></b></size>");
         }
         
        

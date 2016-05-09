@@ -10,34 +10,39 @@ public class Login : MonoBehaviour
 
     private string username;
     private string password;
+    public Text ErrorMessage;
 
     public string Username { set { username = value; } get { return username; } }
     public string Password { set { password = value; } get { return password; } }
 
-    public void loginUser()
+    public void LoginUser()
     {
-        if (Username.Length != 0 && Password.Length != 0)
+        if (Username != null && Password != null)
         {
-            DBController controller = new DBController();
-            Player p = controller.GetCompletePlayer(username);
-
-
-            if (p == null)
+            if (Username.Length > 0 && Password.Length > 0)
             {
-                Debug.Log("Invalid Username, couldn't find a User with that username");
-            } else
-            {
-                if (p.CheckLogin(Password))
+                DBController controller = new DBController();
+                Player p = controller.GetCompletePlayer(username);
+
+                Debug.Log(p.Username.Length);
+                if (p == null || p.Username.Length == 0)
                 {
-                   Debug.Log("Logged in!");
-
+                    ErrorMessage.text = "Invalid Username \n Please try again";
                 }
                 else
                 {
-                    Debug.Log("Password incorrect, try again");
+                    Utils.ChangeScene("MainMenu");
                 }
+
             }
-            Utils.ChangeScene("MainMenu");
+            else
+            {
+                ErrorMessage.text = "Please enter both Username and Password";
+            }
+        }
+        else
+        {
+            ErrorMessage.text = "Please enter both Username and Password";
         }
     }
 

@@ -13,6 +13,7 @@ public class GameScript : MonoBehaviour
     public int playerLives = 3;
     public int score = 0;
     public bool isPause = false;
+    public float roundStart;
     //GUI
     GUIStyle labelStyle = new GUIStyle();
 
@@ -43,7 +44,7 @@ public class GameScript : MonoBehaviour
         //GameObject p1 = GameObject.FindGameObjectWithTag("OskarShip");
         //Debug.Log(p1.name);
         //players.Add(p1);
-
+        roundStart = Time.time;
 
         labelStyle.border = new RectOffset(10, 10, 10, 10);
 
@@ -74,6 +75,7 @@ public class GameScript : MonoBehaviour
         SpawnEnemies();
         SpawnAsteroids();
         SpawnBoss();
+
         score++;
     }
 
@@ -92,8 +94,7 @@ public class GameScript : MonoBehaviour
         if (Time.time > bossNextSpawn)
         {
             bossNextSpawn = Time.time + bossNextSpawn;
-
-            UnityEngine.Object a = Instantiate(boss, new Vector3(UnityEngine.Random.Range(-700.0f, 700.0f), 650), Quaternion.identity);
+            //UnityEngine.Object a = Instantiate(boss, new Vector3(UnityEngine.Random.Range(-700.0f, 700.0f), 650), Quaternion.identity);
         }
     }
 
@@ -107,43 +108,47 @@ public class GameScript : MonoBehaviour
         }
     }
 
-    void theMainMenu(int windowID)
+    void PauseGame(int windowID)
     {
         if (GUI.Button(new Rect(65, 30, 120, 40), "Contiune"))
             isPause = false;
         if (GUI.Button(new Rect(65, 70, 120, 40), "This is to hard..."))
-            SceneManager.LoadScene("GameOVer");
+            SceneManager.LoadScene("GameOver");
 
     }
-    Rect centerRectangle(Rect someRect)
+
+    Rect CenterRectangle(Rect rect)
     {
-        someRect.x = (Screen.width - someRect.width) / 2;
-        someRect.y = (Screen.height - someRect.height) / 2;
-        return someRect;
+        rect.x = (Screen.width - rect.width) / 2;
+        rect.y = (Screen.height - rect.height) / 2;
+        return rect;
     }
 
 
 
     void OnGUI()
     {
-        GUI.contentColor = Color.red;
-        GUI.Label(new Rect(10, 10, 200, 22), "Lives: " + playerLives);
-        GUI.Label(new Rect(10, 32, 200, 22), "Score: " + score);
+        GUIStyle style = new GUIStyle();
+        style.fontSize = 18;
+        style.normal.textColor = Color.white;
+
+        GUI.Label(new Rect(10, 10, 200, 22), "Lives: " + playerLives, style);
+        GUI.Label(new Rect(10, 32, 200, 22), "Score: " + score, style);
 
         if (isPause)
         {
-            GUI.Window(0, centerRectangle(new Rect(100, 100, 250, 120)), theMainMenu, "Pause Menu");
+            GUI.Window(0, CenterRectangle(new Rect(100, 100, 250, 120)), PauseGame, "Pause Menu");
 
         }
     }
 
     void CollisionHandler(MonoBehaviour me, GameObject other)
-    //void CollisionHandler(MonoBehaviour me, GameObject other)
     {
+
         if (me.tag.Equals("Player") && other.tag.Equals("Enemy"))
         {
             PlayerShip ship = me as PlayerShip;
-            if (playerLives > 1)
+            if (playerLives > 0)
             {
                 if (!ship.isInvulnerable)
                     playerLives--;
@@ -152,12 +157,11 @@ public class GameScript : MonoBehaviour
             {
                 Round r = new Round();
                 r.Score = score;
-                r.Duration = (int) Time.time;
-                r.Roundid = 10;
+                r.Duration = (int) Time.time - (int) roundStart;
                 r.Coins = 500;
                 Player p = new Player();
                 p.PlayerRounds.Add(r);
-                SceneManager.LoadScene("GameOver");
+                Utils.ChangeScene("GameOver");
             }
         }
     }

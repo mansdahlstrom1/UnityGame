@@ -35,6 +35,14 @@ public class Missile : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
+        if (this.tag.Equals("Missile") && col.gameObject.tag.Equals("Enemy"))
+        {
+            Destroy(gameObject);
+        }
+        else if (this.tag.Equals("Enemy") && col.gameObject.tag.Equals("Player"))
+        {
+            //estroy(gameObject);
+        }
     }
 
     void OnBecameInvisible()

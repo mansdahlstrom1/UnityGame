@@ -28,9 +28,10 @@ public class EnemyShip : Ship
 
     void FixedUpdate()
     {
+        //if (isActive) { 
         Move();
-
         Shoot();
+        //}
     }
 
     private void Move()
@@ -62,6 +63,8 @@ public class EnemyShip : Ship
 
     new void OnTriggerEnter2D(Collider2D col)
     {
+        //if (isActive)
+        //{
         base.OnTriggerEnter2D(col);
 
         if (col.gameObject.tag.Equals("Missile"))
@@ -74,6 +77,7 @@ public class EnemyShip : Ship
                 Destroy(gameObject);
             }
         }
+        //}
     }
 
     void OnBecameInvisible()

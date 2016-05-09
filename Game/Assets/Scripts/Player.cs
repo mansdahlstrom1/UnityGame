@@ -25,19 +25,8 @@ public class Player {
     public List<Round> PlayerRounds { get { return playerRounds; } set { playerRounds = value; } }
     public List<Upgrade> PlayerUpgrades { get { return playerUpgrades; } set { playerUpgrades = value; } }
 
-    public bool CheckLogin(string password)
-    {
 
-        string HashedPassword = Password.Decrypt(password);
-        Debug.Log("from Utils = " + HashedPassword);
-        Debug.Log("from Player = " + Hash);
-        if (Hash.Equals(HashedPassword))
-            return true;
-        else 
-            return false;
-    }
-
-    public int getBestScore()
+    public int GetBestScore()
     {
         int bestScore = 0;
         for (var i = 0; i < playerRounds.Count; i++)
