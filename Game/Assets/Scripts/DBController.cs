@@ -77,6 +77,19 @@ namespace DBConnector
             return p;
         }
 
+        public void createRound(Round r, string username)
+        {
+            string url = BaseURL +
+                "op=createRound" +
+                "&u=" + username +
+                "&s=" + r.Score +
+                "&d=" + r.Duration +
+                "&c=" + r.Coins;
+            Debug.Log(url);
+            string result = new WebClient().DownloadString(url);
+            Debug.Log(result);
+        }
+
 
     }
 
