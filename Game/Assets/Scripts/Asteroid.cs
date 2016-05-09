@@ -25,7 +25,7 @@ public class Asteroid : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag.Equals("Missile") || col.gameObject.tag.Equals("Player"))
+        if (col.gameObject.tag.Equals("Missile"))
         {
             Destroy(gameObject);
         }

@@ -104,7 +104,7 @@ public class PlayerShip : Ship
            transform.position.z);
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    new void OnTriggerEnter2D(Collider2D col)
     {
         base.OnTriggerEnter2D(col);
         if (!isInvulnerable)

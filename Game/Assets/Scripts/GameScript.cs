@@ -20,6 +20,11 @@ public class GameScript : MonoBehaviour
     public List<PlayerShip> players;
     //public List<GameObject> playerships;
 
+    //Boss
+    public GameObject boss;
+    public float bossSpawnRate;
+    private float bossNextSpawn = 30;
+
 
     //Asteroid
     public GameObject asteroid;
@@ -68,6 +73,7 @@ public class GameScript : MonoBehaviour
     {
         SpawnEnemies();
         SpawnAsteroids();
+        SpawnBoss();
         score++;
     }
 
@@ -78,6 +84,16 @@ public class GameScript : MonoBehaviour
             enemyNextSpawn = Time.time + enemySpawnRate;
 
             UnityEngine.Object a = Instantiate(enemy, new Vector3(UnityEngine.Random.Range(-700.0f, 700.0f), 650), Quaternion.identity);
+        }
+    }
+
+    private void SpawnBoss()
+    {
+        if (Time.time > bossNextSpawn)
+        {
+            bossNextSpawn = Time.time + bossNextSpawn;
+
+            UnityEngine.Object a = Instantiate(boss, new Vector3(UnityEngine.Random.Range(-700.0f, 700.0f), 650), Quaternion.identity);
         }
     }
 
@@ -121,7 +137,7 @@ public class GameScript : MonoBehaviour
         }
     }
 
-    void CollisionHandler(MonoBehaviour me, GameObject other, EventArgs e)
+    void CollisionHandler(MonoBehaviour me, GameObject other)
     //void CollisionHandler(MonoBehaviour me, GameObject other)
     {
         if (me.tag.Equals("Player") && other.tag.Equals("Enemy"))
@@ -138,6 +154,7 @@ public class GameScript : MonoBehaviour
                 r.Score = score;
                 r.Duration = (int) Time.time;
                 r.Roundid = 10;
+                r.Coins = 500;
                 Player p = new Player();
                 p.PlayerRounds.Add(r);
                 SceneManager.LoadScene("GameOver");

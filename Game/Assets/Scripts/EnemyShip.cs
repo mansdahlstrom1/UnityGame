@@ -7,6 +7,8 @@ public class EnemyShip : Ship
 {
     public Rect MoveArea;
 
+    public int lives = 5;
+
     // Use this for initialization
     void Start()
     {
@@ -58,11 +60,19 @@ public class EnemyShip : Ship
         r2d.velocity = velocity;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    new void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag.Equals("Missile") || col.gameObject.tag.Equals("Player"))
+        base.OnTriggerEnter2D(col);
+
+        if (col.gameObject.tag.Equals("Missile"))
         {
-            Destroy(gameObject);
+            if (lives > 0)
+            {
+                lives--;
+            }
+            else {
+                Destroy(gameObject);
+            }
         }
     }
 
