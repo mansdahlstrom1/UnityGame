@@ -12,15 +12,15 @@ namespace Assets.Scripts
         public GameObject missile;
         public float fireRate;
         public int moveSpeed;
-        
+
         protected Rigidbody2D r2d;
         protected Vector2 velocity;
         protected float nextFire;
 
         //Collision event
         public event CollisionEvent collisionEvent;
-        public EventArgs e = null;
-        public delegate void CollisionEvent(MonoBehaviour me, GameObject obj, EventArgs e);
+        //public EventArgs e = null;
+        public delegate void CollisionEvent(MonoBehaviour me, GameObject obj);
         //public delegate void CollisionEvent(MonoBehaviour me, GameObject obj);
 
         public void Shoot()
@@ -38,7 +38,14 @@ namespace Assets.Scripts
 
         protected void OnTriggerEnter2D(Collider2D col)
         {
-            collisionEvent(this, col.gameObject, e);
+            try {
+                if (!this.tag.Equals(col.gameObject.tag))
+                    collisionEvent(this, col.gameObject);
+            }
+            catch (Exception e)
+            {
+
+            }
         }
     }
 }
