@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using DBConnector;
 
 public class GameOverScript : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameOverScript : MonoBehaviour
     Player p;
     Round playedRound;
 
+    DBController conn = new DBController();
 
     void Start()
     {
@@ -18,5 +20,7 @@ public class GameOverScript : MonoBehaviour
         playedRound = p.PlayerRounds[latestRoundIndex];
         Score.text = playedRound.Score.ToString();
         Duration.text = playedRound.Duration.ToString();
+        conn.createRound(playedRound, p.Username);
+
     }
 }
