@@ -41,7 +41,7 @@ public class Missile : MonoBehaviour
         }
         else if (this.tag.Equals("Enemy") && col.gameObject.tag.Equals("Player"))
         {
-            //estroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
