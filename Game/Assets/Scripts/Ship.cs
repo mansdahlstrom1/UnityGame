@@ -16,7 +16,7 @@ namespace Assets.Scripts
         protected Rigidbody2D r2d;
         protected Vector2 velocity;
         protected float nextFire;
-        
+
         public bool isActive;
 
         //Collision event
@@ -39,14 +39,14 @@ namespace Assets.Scripts
 
         protected void OnTriggerEnter2D(Collider2D col)
         {
-            try {
-                if (!this.tag.Equals(col.gameObject.tag))
-                    collisionEvent(this, col.gameObject);
-            }
-            catch (Exception e)
-            {
+            //try {
+            if (!this.tag.Equals(col.gameObject.tag))
+                collisionEvent(this, col.gameObject);
+            //}
+            //catch (Exception e)
+            //{
 
-            }
+            //}
         }
     }
 }

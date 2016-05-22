@@ -7,23 +7,22 @@ using Assets.Scripts;
 
 public class PlayerShip : Ship
 {
+    //Private Members
     private Rect shipBounds;
     private Rect cameraRect;
+    private float deathTime;
+
+    //Public Members
     public int playerNumber;
-
-    //private CharacterController characterController;
-
-    public bool isInvulnerable;
     public float respawnTime;
-    public float deathTime;
 
-    //public int PlayerNumber { get { return playerNumber; } set { playerNumber = value; } }
+    //Properties
+    private bool isInvulnerable;
+    public bool IsInvulnerable {  get { return isInvulnerable; } set { isInvulnerable = value; } }
 
     // Use this for initialization
     void Start()
     {
-        //characterController = GetComponent<CharacterController>();
-
         r2d = GetComponent<Rigidbody2D>();
 
         Renderer renderer = GetComponent<Renderer>();
@@ -53,12 +52,6 @@ public class PlayerShip : Ship
         //Keep ship within camera
         if (isActive)
         {
-            //TEST
-            //string joystickString = playerNumber.ToString();
-            //velocity.x = Input.GetAxis("LeftJoystickX_P" + joystickString) * moveSpeed;
-            //velocity.y = Input.GetAxis("LeftJoystickY_P" + joystickString) * moveSpeed;
-            //TEST
-
             if (isInvulnerable)
             {
                 if (Time.time > deathTime + respawnTime)
@@ -67,14 +60,14 @@ public class PlayerShip : Ship
                 }
             }
 
-            if (Input.GetButton("Fire"))
+            if (Input.GetButton("Fire_P" + playerNumber))
             {
                 Shoot();
             }
 
 
-            velocity.x = Input.GetAxis("Horizontal") * moveSpeed;
-            velocity.y = Input.GetAxis("Vertical") * moveSpeed;
+            velocity.x = Input.GetAxis("Horizontal_P" + playerNumber) * moveSpeed;
+            velocity.y = Input.GetAxis("Vertical_P" + playerNumber) * moveSpeed;
 
             r2d.velocity = velocity;
 

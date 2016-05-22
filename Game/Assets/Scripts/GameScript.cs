@@ -150,18 +150,28 @@ public class GameScript : MonoBehaviour
             PlayerShip ship = me as PlayerShip;
             if (playerLives > 0)
             {
-                if (!ship.isInvulnerable)
+                if (!ship.IsInvulnerable)
                     playerLives--;
             }
             else
             {
-                Round r = new Round();
-                r.Score = score;
-                r.Duration = (int) Time.time - (int) roundStart;
-                r.Coins = 500;
-                Player p = new Player();
-                p.PlayerRounds.Add(r);
-                Utils.ChangeScene("GameOver");
+                try
+                {
+                    Round r = new Round();
+                    r.Score = score;
+                    r.Duration = (int)Time.time - (int)roundStart;
+                    r.Coins = 500;
+                    Player p = new Player();
+                    p.PlayerRounds.Add(r);
+                }
+                catch (Exception e)
+                {
+                    //The round was not saved.
+                }
+                finally
+                {
+                    Utils.ChangeScene("GameOver");
+                }
             }
         }
     }
