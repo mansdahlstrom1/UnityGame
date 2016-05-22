@@ -2,9 +2,15 @@ Mono path[0] = 'E:/Unity/UnityGame/testbuild_Data/Managed'
 Mono path[1] = 'E:/Unity/UnityGame/testbuild_Data/Mono'
 Mono config path = 'E:/Unity/UnityGame/testbuild_Data/Mono/etc'
 PlayerConnection initialized from E:/Unity/UnityGame/testbuild_Data (debug = 0)
+<<<<<<< HEAD
 PlayerConnection initialized network socket : 0.0.0.0 55330
 Multi-casting "[IP] 192.168.1.3 [Port] 55330 [Flags] 2 [Guid] 4155721196 [EditorId] 2207617067 [Version] 1048832 [Id] WindowsPlayer(Pontus-PC) [Debug] 0" to [225.0.0.222:54997]...
 PlayerConnection already initialized - listening to [192.168.1.3:55330]
+=======
+PlayerConnection initialized network socket : 0.0.0.0 55346
+Multi-casting "[IP] 192.168.1.3 [Port] 55346 [Flags] 2 [Guid] 3812053596 [EditorId] 2222888494 [Version] 1048832 [Id] WindowsPlayer(Pontus-PC) [Debug] 0" to [225.0.0.222:54997]...
+PlayerConnection already initialized - listening to [192.168.1.3:55346]
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
 Initialize engine version: 5.3.4f1 (fdbb5133b820)
 GfxDevice: creating device client; threaded=1
 Direct3D:
@@ -23,14 +29,22 @@ Platform assembly: E:\Unity\UnityGame\testbuild_Data\Managed\UnityEngine.UI.dll 
 Loading E:\Unity\UnityGame\testbuild_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: E:\Unity\UnityGame\testbuild_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading E:\Unity\UnityGame\testbuild_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+<<<<<<< HEAD
 - Completed reload, in  0.066 seconds
+=======
+- Completed reload, in  0.071 seconds
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
 Platform assembly: E:\Unity\UnityGame\testbuild_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: E:\Unity\UnityGame\testbuild_Data\Managed\System.dll (this message is harmless)
 desktop: 1920x1080 60Hz; virtual: 3200x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
+<<<<<<< HEAD
 UnloadTime: 0.755369 ms
+=======
+UnloadTime: 0.738535 ms
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
 Platform assembly: E:\Unity\UnityGame\testbuild_Data\Managed\System.Configuration.dll (this message is harmless)
 Platform assembly: E:\Unity\UnityGame\testbuild_Data\Managed\System.Xml.dll (this message is harmless)
 Platform assembly: E:\Unity\UnityGame\testbuild_Data\Managed\Mono.Security.dll (this message is harmless)
@@ -39,9 +53,15 @@ UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
 UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
 UnityEngine.Logger:Log(LogType, Object)
 UnityEngine.Debug:Log(Object)
+<<<<<<< HEAD
 DBConnector.DBController:GetPlayerRounds(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:36)
 DBConnector.DBController:GetCompletePlayer(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:75)
 Login:LoginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:25)
+=======
+DBConnector.DBController:getPlayerRounds(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:36)
+DBConnector.DBController:GetCompletePlayer(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:75)
+Login:loginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:22)
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
 UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:144)
 UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:621)
 UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:756)
@@ -63,9 +83,15 @@ UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
 UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
 UnityEngine.Logger:Log(LogType, Object)
 UnityEngine.Debug:Log(Object)
+<<<<<<< HEAD
 DBConnector.DBController:GetPlayerRounds(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:41)
 DBConnector.DBController:GetCompletePlayer(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:75)
 Login:LoginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:25)
+=======
+DBConnector.DBController:getPlayerRounds(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:41)
+DBConnector.DBController:GetCompletePlayer(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:75)
+Login:loginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:22)
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
 UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:144)
 UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:621)
 UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:756)
@@ -87,9 +113,15 @@ UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
 UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
 UnityEngine.Logger:Log(LogType, Object)
 UnityEngine.Debug:Log(Object)
+<<<<<<< HEAD
 DBConnector.DBController:GetPlayerUpgrades(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:56)
 DBConnector.DBController:GetCompletePlayer(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:76)
 Login:LoginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:25)
+=======
+DBConnector.DBController:getPlayerUpgrades(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:56)
+DBConnector.DBController:GetCompletePlayer(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:76)
+Login:loginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:22)
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
 UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:144)
 UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:621)
 UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:756)
@@ -111,9 +143,15 @@ UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
 UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
 UnityEngine.Logger:Log(LogType, Object)
 UnityEngine.Debug:Log(Object)
+<<<<<<< HEAD
 DBConnector.DBController:GetPlayerUpgrades(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:61)
 DBConnector.DBController:GetCompletePlayer(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:76)
 Login:LoginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:25)
+=======
+DBConnector.DBController:getPlayerUpgrades(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:61)
+DBConnector.DBController:GetCompletePlayer(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\DBController.cs:76)
+Login:loginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:22)
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
 UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:144)
 UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:621)
 UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:756)
@@ -130,12 +168,21 @@ UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Exte
  
 (Filename: E:/Unity/UnityGame/Game/Assets/Scripts/DBController.cs Line: 61)
 
+<<<<<<< HEAD
 6
+=======
+from Utils = 1
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
 UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
 UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
 UnityEngine.Logger:Log(LogType, Object)
 UnityEngine.Debug:Log(Object)
+<<<<<<< HEAD
 Login:LoginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:27)
+=======
+Player:CheckLogin(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\Player.cs:32)
+Login:loginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:30)
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
 UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:144)
 UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:621)
 UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:756)
@@ -150,6 +197,7 @@ UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\builds
 UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:190)
 UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
  
+<<<<<<< HEAD
 (Filename: E:/Unity/UnityGame/Game/Assets/Scripts/Login.cs Line: 27)
 
 Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
@@ -159,6 +207,62 @@ System memory in use after: 27.7 MB.
 
 Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 214.
 Total: 0.576774 ms (FindLiveObjects: 0.012809 ms CreateObjectMapping: 0.018664 ms MarkObjects: 0.533589 ms  DeleteObjects: 0.011345 ms)
+=======
+(Filename: E:/Unity/UnityGame/Game/Assets/Scripts/Player.cs Line: 32)
+
+from Player = wi8LFC+3B9fZ5Lpqd6Y2uQ==
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Player:CheckLogin(String) (at E:\Unity\UnityGame\Game\Assets\Scripts\Player.cs:33)
+Login:loginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:30)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:144)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:621)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:756)
+UnityEngine.Events.UnityEvent:Invoke() (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_0.cs:53)
+UnityEngine.UI.Button:Press() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:35)
+UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:44)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:52)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:529)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:428)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:416)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:190)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: E:/Unity/UnityGame/Game/Assets/Scripts/Player.cs Line: 33)
+
+Password incorrect, try again
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+Login:loginUser() (at E:\Unity\UnityGame\Game\Assets\Scripts\Login.cs:37)
+UnityEngine.Events.InvokableCall:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:144)
+UnityEngine.Events.InvokableCallList:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:621)
+UnityEngine.Events.UnityEventBase:Invoke(Object[]) (at C:\buildslave\unity\build\Runtime\Export\UnityEvent.cs:756)
+UnityEngine.Events.UnityEvent:Invoke() (at C:\buildslave\unity\build\Runtime\Export\UnityEvent_0.cs:53)
+UnityEngine.UI.Button:Press() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:35)
+UnityEngine.UI.Button:OnPointerClick(PointerEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\UI\Core\Button.cs:44)
+UnityEngine.EventSystems.ExecuteEvents:Execute(IPointerClickHandler, BaseEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:52)
+UnityEngine.EventSystems.ExecuteEvents:Execute(GameObject, BaseEventData, EventFunction`1) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\ExecuteEvents.cs:269)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMousePress(MouseButtonEventData) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:529)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent(Int32) (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:428)
+UnityEngine.EventSystems.StandaloneInputModule:ProcessMouseEvent() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:416)
+UnityEngine.EventSystems.StandaloneInputModule:Process() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\InputModules\StandaloneInputModule.cs:190)
+UnityEngine.EventSystems.EventSystem:Update() (at C:\buildslave\unity\build\Extensions\guisystem\UnityEngine.UI\EventSystem\EventSystem.cs:277)
+ 
+(Filename: E:/Unity/UnityGame/Game/Assets/Scripts/Login.cs Line: 37)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.105861 ms
+System memory in use before: 27.7 MB.
+System memory in use after: 27.7 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 215.
+Total: 0.529930 ms (FindLiveObjects: 0.011345 ms CreateObjectMapping: 0.017932 ms MarkObjects: 0.488575 ms  DeleteObjects: 0.011345 ms)
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
 
 We are starting
 UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
@@ -170,6 +274,7 @@ GUIMainMenu:Start() (at E:\Unity\UnityGame\Game\Assets\Scripts\GUIMainMenu.cs:16
 (Filename: E:/Unity/UnityGame/Game/Assets/Scripts/GUIMainMenu.cs Line: 16)
 
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+<<<<<<< HEAD
 UnloadTime: 0.472837 ms
 System memory in use before: 48.4 MB.
 System memory in use after: 48.4 MB.
@@ -192,6 +297,46 @@ System memory in use after: 62.3 MB.
 
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 246.
 Total: 0.609712 ms (FindLiveObjects: 0.013175 ms CreateObjectMapping: 0.010613 ms MarkObjects: 0.574212 ms  DeleteObjects: 0.010979 ms)
+=======
+UnloadTime: 0.469910 ms
+System memory in use before: 48.4 MB.
+System memory in use after: 48.4 MB.
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 298.
+Total: 0.520414 ms (FindLiveObjects: 0.015736 ms CreateObjectMapping: 0.015736 ms MarkObjects: 0.473936 ms  DeleteObjects: 0.014638 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.658021 ms
+System memory in use before: 71.5 MB.
+System memory in use after: 71.5 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 258.
+Total: 0.619227 ms (FindLiveObjects: 0.013541 ms CreateObjectMapping: 0.015736 ms MarkObjects: 0.569821 ms  DeleteObjects: 0.019030 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.513827 ms
+System memory in use before: 71.5 MB.
+System memory in use after: 71.5 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 298.
+Total: 0.551888 ms (FindLiveObjects: 0.016102 ms CreateObjectMapping: 0.016468 ms MarkObjects: 0.505410 ms  DeleteObjects: 0.013541 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.104509 ms
+System memory in use before: 71.5 MB.
+System memory in use after: 71.5 MB.
+
+Unloading 22 unused Assets to reduce memory usage. Loaded Objects now: 258.
+Total: 0.707061 ms (FindLiveObjects: 0.025984 ms CreateObjectMapping: 0.016834 ms MarkObjects: 0.644114 ms  DeleteObjects: 0.019030 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.495894 ms
+System memory in use before: 62.3 MB.
+System memory in use after: 62.3 MB.
+
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 247.
+Total: 0.558110 ms (FindLiveObjects: 0.013175 ms CreateObjectMapping: 0.010979 ms MarkObjects: 0.525172 ms  DeleteObjects: 0.008051 ms)
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
 
 We are starting
 UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
@@ -202,6 +347,7 @@ GUIMainMenu:Start() (at E:\Unity\UnityGame\Game\Assets\Scripts\GUIMainMenu.cs:16
  
 (Filename: E:/Unity/UnityGame/Game/Assets/Scripts/GUIMainMenu.cs Line: 16)
 
+<<<<<<< HEAD
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
 UnloadTime: 0.451611 ms
 System memory in use before: 48.4 MB.
@@ -220,3 +366,32 @@ Total: 0.703767 ms (FindLiveObjects: 0.041720 ms CreateObjectMapping: 0.017932 m
 
 Setting up 1 worker threads for Enlighten.
   Thread -> id: 9cc8 -> priority: 1 
+=======
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.539445 ms
+System memory in use before: 27.8 MB.
+System memory in use after: 27.8 MB.
+
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 351.
+Total: 0.818317 ms (FindLiveObjects: 0.034401 ms CreateObjectMapping: 0.016102 ms MarkObjects: 0.754638 ms  DeleteObjects: 0.011711 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.945310 ms
+System memory in use before: 27.8 MB.
+System memory in use after: 27.8 MB.
+
+Unloading 7 unused Assets to reduce memory usage. Loaded Objects now: 247.
+Total: 0.580068 ms (FindLiveObjects: 0.016468 ms CreateObjectMapping: 0.011345 ms MarkObjects: 0.540909 ms  DeleteObjects: 0.010613 ms)
+
+We are starting
+UnityEngine.DebugLogHandler:Internal_Log(LogType, String, Object)
+UnityEngine.DebugLogHandler:LogFormat(LogType, Object, String, Object[])
+UnityEngine.Logger:Log(LogType, Object)
+UnityEngine.Debug:Log(Object)
+GUIMainMenu:Start() (at E:\Unity\UnityGame\Game\Assets\Scripts\GUIMainMenu.cs:16)
+ 
+(Filename: E:/Unity/UnityGame/Game/Assets/Scripts/GUIMainMenu.cs Line: 16)
+
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 15020 -> priority: 1 
+>>>>>>> 1b4cbd3f7ef20a096499f528dfef5a4bffecadb7
