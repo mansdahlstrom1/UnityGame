@@ -51,7 +51,13 @@ public class GameScript : MonoBehaviour
 
         foreach (PlayerShip ship in players)
         {
-            ship.collisionEvent += new Ship.CollisionEvent(CollisionHandler);
+            if (ship.playerNumber != 1)
+            {
+                ship.isActive = false;
+            }
+
+            if (ship.isActive)
+                ship.collisionEvent += new Ship.CollisionEvent(CollisionHandler);
         }
 
         labelStyle.fontSize = 22;
@@ -94,7 +100,7 @@ public class GameScript : MonoBehaviour
         if (Time.time > bossNextSpawn)
         {
             bossNextSpawn = Time.time + bossNextSpawn;
-            //UnityEngine.Object a = Instantiate(boss, new Vector3(UnityEngine.Random.Range(-700.0f, 700.0f), 650), Quaternion.identity);
+            UnityEngine.Object a = Instantiate(boss, new Vector3(UnityEngine.Random.Range(-700.0f, 700.0f), 650), Quaternion.identity);
         }
     }
 

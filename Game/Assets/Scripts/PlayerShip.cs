@@ -18,7 +18,7 @@ public class PlayerShip : Ship
 
     //Properties
     private bool isInvulnerable;
-    public bool IsInvulnerable {  get { return isInvulnerable; } set { isInvulnerable = value; } }
+    public bool IsInvulnerable { get { return isInvulnerable; } set { isInvulnerable = value; } }
 
     // Use this for initialization
     void Start()
@@ -99,12 +99,16 @@ public class PlayerShip : Ship
                Mathf.Clamp(transform.position.y, (cameraRect.yMin + (shipBounds.height / 2)), (cameraRect.yMax - (shipBounds.height / 2))),
                transform.position.z);
         }
+        else // !isActive
+        {
+            transform.position = new Vector3(2000, 2000);
+        }
     }
 
     new void OnTriggerEnter2D(Collider2D col)
     {
         base.OnTriggerEnter2D(col);
-        
+
         if (!isInvulnerable && col.gameObject.tag.Equals("Enemy"))
         {
             isInvulnerable = true;
