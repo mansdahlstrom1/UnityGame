@@ -15,6 +15,7 @@ public class PlayerShip : Ship
     //Public Members
     public int playerNumber;
     public float respawnTime;
+    public GameObject shield;
 
     //Properties
     private bool isInvulnerable;
@@ -44,6 +45,10 @@ public class PlayerShip : Ship
             topRight.y - bottomLeft.y
         );
 
+
+
+        shield = Instantiate(shield, transform.position, Quaternion.identity) as GameObject;
+        shield.GetComponent<Renderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -56,6 +61,7 @@ public class PlayerShip : Ship
             {
                 if (Time.time > deathTime + respawnTime)
                 {
+                    shield.GetComponent<Renderer>().enabled = false;
                     isInvulnerable = false;
                 }
             }
@@ -70,6 +76,7 @@ public class PlayerShip : Ship
             velocity.y = Input.GetAxis("Vertical_P" + playerNumber) * moveSpeed;
 
             r2d.velocity = velocity;
+            shield.transform.position = transform.position;
 
             //Rotation
             if (velocity.x > 0)
@@ -111,6 +118,8 @@ public class PlayerShip : Ship
 
         if (!isInvulnerable && col.gameObject.tag.Equals("Enemy"))
         {
+            shield.GetComponent<Renderer>().enabled = true;
+            
             isInvulnerable = true;
             deathTime = Time.time;
         }
