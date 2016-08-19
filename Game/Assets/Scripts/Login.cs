@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Net;
 using DBConnector;
 using System.Collections.Generic;
@@ -14,6 +15,42 @@ public class Login : MonoBehaviour
 
     public string Username { set { username = value; } get { return username; } }
     public string Password { set { password = value; } get { return password; } }
+
+    EventSystem system;
+
+    void Start()
+    {
+        system = EventSystem.current;
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (system.currentSelectedGameObject.GetComponent<InputField>() != null)
+            {
+                Selectable next = system.currentSelectedGameObject.GetComponent<InputField>().FindSelectableOnDown();
+
+
+                if (next != null)
+                {
+
+                    InputField inputfield = next.GetComponent<InputField>();
+                    if (inputfield != null)
+                        inputfield.OnPointerClick(new PointerEventData(system));  //if it's an input field, also set the text caret
+
+                    system.SetSelectedGameObject(next.gameObject, new BaseEventData(system));
+                }
+            }
+            else
+            {
+                system.SetSelectedGameObject(system.firstSelectedGameObject);
+            }
+
+        }
+    }
+
+
 
     public void LoginUser()
     {

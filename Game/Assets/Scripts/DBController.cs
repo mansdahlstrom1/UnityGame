@@ -71,9 +71,9 @@ namespace DBConnector
         public Player GetCompletePlayer(string username)
         {
             Player p = GetUserByUsername(username);
-            p.Options = GetUserOptions(username);
-            p.PlayerRounds = GetPlayerRounds(username);
-            p.PlayerUpgrades = GetPlayerUpgrades(username);
+            //p.Options = GetUserOptions(username);
+            //p.PlayerRounds = GetPlayerRounds(username);
+            //p.PlayerUpgrades = GetPlayerUpgrades(username);
             return p;
         }
 
