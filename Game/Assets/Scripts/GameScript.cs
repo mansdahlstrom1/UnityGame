@@ -51,12 +51,6 @@ public class GameScript : MonoBehaviour
 
         foreach (PlayerShip ship in players)
         {
-            if (ship.playerNumber != 1)
-            {
-                ship.isActive = false;
-            }
-
-            if (ship.isActive)
                 ship.collisionEvent += new Ship.CollisionEvent(CollisionHandler);
         }
 
