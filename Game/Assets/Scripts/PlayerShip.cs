@@ -10,11 +10,14 @@ public class PlayerShip : Ship
     //Private Members
     private Rect shipBounds;
     private Rect cameraRect;
-    private float deathTime;
+    private float deathTime = 0.0f;
+    private float lastRoll = 0.0f;
 
     //Public Members
-    public int playerNumber;
-    public float respawnTime;
+    public int PlayerNumber;
+    public float RespawnTime = 1.5f;
+    public float RollForce = 2000;
+    public float RollCooldown = 0.5f;
     public GameObject shield;
 
     //Properties
@@ -45,8 +48,6 @@ public class PlayerShip : Ship
             topRight.y - bottomLeft.y
         );
 
-
-
         shield = Instantiate(shield, transform.position, Quaternion.identity) as GameObject;
         shield.GetComponent<Renderer>().enabled = false;
     }
@@ -54,74 +55,99 @@ public class PlayerShip : Ship
     // Update is called once per frame
     void Update()
     {
-        //Keep ship within camera
-        if (isActive)
+        if (isInvulnerable)
         {
-            if (isInvulnerable)
+            if (Time.time > deathTime + RespawnTime)
             {
-                if (Time.time > deathTime + respawnTime)
-                {
-                    shield.GetComponent<Renderer>().enabled = false;
-                    isInvulnerable = false;
-                }
+                shield.GetComponent<Renderer>().enabled = false;
+                isInvulnerable = false;
             }
-
-            if (Input.GetButton("Fire_P" + playerNumber))
-            {
-                Shoot();
-            }
-
-
-            velocity.x = Input.GetAxis("Horizontal_P" + playerNumber) * moveSpeed;
-            velocity.y = Input.GetAxis("Vertical_P" + playerNumber) * moveSpeed;
-
-            r2d.velocity = velocity;
-            shield.transform.position = transform.position;
-
-            //Rotation
-            if (velocity.x > 0)
-            {
-                if (transform.rotation.y < 0.4)
-                    transform.Rotate(0, 2.5f, 0);
-            }
-            else if (velocity.x < 0)
-            {
-                if (transform.rotation.y > -0.4)
-                    transform.Rotate(0, -2.5f, 0);
-            }
-            else
-            {
-                if (transform.rotation.y > 0)
-                {
-                    transform.Rotate(0, -2f, 0);
-                }
-                else if (transform.rotation.y < 0)
-                {
-                    transform.Rotate(0, 2f, 0);
-                }
-            }
-
-            transform.position = new Vector3(
-               Mathf.Clamp(transform.position.x, (cameraRect.xMin + (shipBounds.width / 2)), (cameraRect.xMax - (shipBounds.width / 2))),
-               Mathf.Clamp(transform.position.y, (cameraRect.yMin + (shipBounds.height / 2)), (cameraRect.yMax - (shipBounds.height / 2))),
-               transform.position.z);
         }
-        else // !isActive
+
+        //Horizontal and vertical
+        velocity.x += Input.GetAxis("Horizontal_P" + PlayerNumber) * moveSpeed;
+        velocity.y += Input.GetAxis("Vertical_P" + PlayerNumber) * moveSpeed;
+
+
+        //Input
+        //Shoot
+        if (Input.GetAxis("Fire_P" + PlayerNumber) > 0)
+            Shoot();
+        //else?
+        //Roll
+
+
+        if (Input.GetAxis("Roll_P" + PlayerNumber) != 0)
         {
-            transform.position = new Vector3(2000, 2000);
+            if (Time.time > lastRoll + RollCooldown)
+            {
+                lastRoll = Time.time;
+
+                if (velocity.x > 0)
+                    velocity += new Vector2(RollForce * moveSpeed, 0);
+                else if (velocity.x < 0)
+                    velocity -= new Vector2(RollForce * moveSpeed, 0);
+
+            }
+        }
+
+
+        //Rotate
+        Rotate(velocity);
+
+        //Move
+        r2d.velocity = velocity;
+        velocity = new Vector2();
+        //Move shield
+        shield.transform.position = transform.position;
+
+        //Keep player within camera
+        transform.position = new Vector3(
+           Mathf.Clamp(transform.position.x, (cameraRect.xMin + (shipBounds.width / 2)), (cameraRect.xMax - (shipBounds.width / 2))),
+           Mathf.Clamp(transform.position.y, (cameraRect.yMin + (shipBounds.height / 2)), (cameraRect.yMax - (shipBounds.height / 2))),
+           transform.position.z);
+    }
+
+    void Rotate(Vector2 velocity)
+    {
+        //Rotation based on velocity
+        if (velocity.x > 0)
+        {
+            if (transform.rotation.y < 0.4)
+                transform.Rotate(0, 2.5f, 0);
+        }
+        else if (velocity.x < 0)
+        {
+            if (transform.rotation.y > -0.4)
+                transform.Rotate(0, -2.5f, 0);
+        }
+        else //Rotate back to normal position
+        {
+            if (transform.rotation.y > 0)
+                transform.Rotate(0, -2f, 0);
+            else if (transform.rotation.y < 0)
+                transform.Rotate(0, 2f, 0);
         }
     }
 
-    new void OnTriggerEnter2D(Collider2D col)
-    {
-        base.OnTriggerEnter2D(col);
+    //Collision event
+    public event CollisionEvent collisionEvent;
+    public delegate void CollisionEvent(MonoBehaviour me, GameObject obj);
 
+    //Collision
+    protected void OnTriggerEnter2D(Collider2D col)
+    {
+        //If the shield is down and you're colliding with an enemy
         if (!isInvulnerable && col.gameObject.tag.Equals("Enemy"))
         {
-            shield.GetComponent<Renderer>().enabled = true;
-            
+            shield.GetComponent<Renderer>().enabled = true; //Show the blue shield
             isInvulnerable = true;
             deathTime = Time.time;
+
+            //Fire an event unless you're colliding with something of your own type(tag)
+            if (!this.tag.Equals(col.gameObject.tag))
+                collisionEvent(this, col.gameObject);
         }
     }
+
 }

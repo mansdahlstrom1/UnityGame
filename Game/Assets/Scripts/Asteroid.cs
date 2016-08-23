@@ -6,6 +6,8 @@ public class Asteroid : MonoBehaviour
 {
     public float rotationSpeed;
     public float speed;
+    public float SpeedIncreaseIntervalInSeconds;
+    private float nextSpeedIncrease;
 
     private Rigidbody2D r2d;
 
@@ -20,7 +22,13 @@ public class Asteroid : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.Rotate(Vector3.forward * rotationSpeed);
+        if (Time.time > nextSpeedIncrease)
+        {
+            nextSpeedIncrease = Time.time + SpeedIncreaseIntervalInSeconds;
+
+            speed += speed / 2;
+        }
+        transform.Rotate(0, 0, rotationSpeed);
     }
 
     void OnTriggerEnter2D(Collider2D col)

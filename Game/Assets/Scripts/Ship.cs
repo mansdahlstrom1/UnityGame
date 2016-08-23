@@ -19,11 +19,6 @@ namespace Assets.Scripts
 
         public bool isActive;
 
-        //Collision event
-        public event CollisionEvent collisionEvent;
-        //public EventArgs e = null;
-        public delegate void CollisionEvent(MonoBehaviour me, GameObject obj);
-
         public void Shoot()
         {
             if (Time.time > nextFire)
@@ -35,18 +30,6 @@ namespace Assets.Scripts
                     Instantiate(missile, (transform.position + (Vector3)spawnPoint), Quaternion.identity);
                 }
             }
-        }
-
-        protected void OnTriggerEnter2D(Collider2D col)
-        {
-            //try {
-            if (!this.tag.Equals(col.gameObject.tag))
-                collisionEvent(this, col.gameObject);
-            //}
-            //catch (Exception e)
-            //{
-
-            //}
         }
     }
 }

@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts;
+using System;
 
 public class EnemyShip : Ship
 {
     public Rect MoveArea;
 
-    public int lives = 5;
+    public int lives = 3;
 
     // Use this for initialization
     void Start()
@@ -19,19 +20,10 @@ public class EnemyShip : Ship
 
         r2d.velocity = velocity;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void FixedUpdate()
     {
-        //if (isActive) { 
         Move();
         Shoot();
-        //}
     }
 
     private void Move()
@@ -61,27 +53,14 @@ public class EnemyShip : Ship
         r2d.velocity = velocity;
     }
 
-    new void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
-        //if (isActive)
-        //{
-        base.OnTriggerEnter2D(col);
-
         if (col.gameObject.tag.Equals("Missile"))
         {
             if (lives > 0)
-            {
                 lives--;
-            }
-            else {
+            else
                 Destroy(gameObject);
-            }
         }
-        //}
-    }
-
-    void OnBecameInvisible()
-    {
-        //Destroy(gameObject);
     }
 }

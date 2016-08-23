@@ -19,12 +19,11 @@ public class GameScript : MonoBehaviour
 
     //Player
     public List<PlayerShip> players;
-    //public List<GameObject> playerships;
 
     //Boss
     public GameObject boss;
     public float bossSpawnRate;
-    private float bossNextSpawn = 30;
+    private float bossNextSpawn = 15;
 
 
     //Asteroid
@@ -40,18 +39,14 @@ public class GameScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //PlayerShip p1 = GetComponent("StandardShip");
-        //GameObject p1 = GameObject.FindGameObjectWithTag("OskarShip");
-        //Debug.Log(p1.name);
-        //players.Add(p1);
         roundStart = Time.time;
 
         labelStyle.border = new RectOffset(10, 10, 10, 10);
 
-
+        //Add collision listener to all ships
         foreach (PlayerShip ship in players)
         {
-                ship.collisionEvent += new Ship.CollisionEvent(CollisionHandler);
+                ship.collisionEvent += new PlayerShip.CollisionEvent(CollisionHandler);
         }
 
         labelStyle.fontSize = 22;
@@ -72,7 +67,7 @@ public class GameScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        SpawnEnemies();
+        //SpawnEnemies();
         SpawnAsteroids();
         SpawnBoss();
 
@@ -93,7 +88,7 @@ public class GameScript : MonoBehaviour
     {
         if (Time.time > bossNextSpawn)
         {
-            bossNextSpawn = Time.time + bossNextSpawn;
+            bossNextSpawn = Time.time + bossSpawnRate;
             UnityEngine.Object a = Instantiate(boss, new Vector3(UnityEngine.Random.Range(-700.0f, 700.0f), 650), Quaternion.identity);
         }
     }
@@ -147,10 +142,9 @@ public class GameScript : MonoBehaviour
 
         if (me.tag.Equals("Player") && other.tag.Equals("Enemy"))
         {
-            PlayerShip ship = me as PlayerShip;
             if (playerLives > 0)
             {
-                if (!ship.IsInvulnerable)
+                if (!me.GetComponent<PlayerShip>().IsInvulnerable)
                     playerLives--;
             }
             else
