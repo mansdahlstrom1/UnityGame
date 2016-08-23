@@ -139,7 +139,6 @@ public class GameScript : MonoBehaviour
 
     void CollisionHandler(MonoBehaviour me, GameObject other)
     {
-
         if (me.tag.Equals("Player") && other.tag.Equals("Enemy"))
         {
             if (playerLives > 0)

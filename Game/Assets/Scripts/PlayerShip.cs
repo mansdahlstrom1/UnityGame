@@ -57,6 +57,7 @@ public class PlayerShip : Ship
     {
         if (isInvulnerable)
         {
+            shield.GetComponent<Renderer>().enabled = true; //Show the blue shield
             if (Time.time > deathTime + RespawnTime)
             {
                 shield.GetComponent<Renderer>().enabled = false;
@@ -140,13 +141,13 @@ public class PlayerShip : Ship
         //If the shield is down and you're colliding with an enemy
         if (!isInvulnerable && col.gameObject.tag.Equals("Enemy"))
         {
-            shield.GetComponent<Renderer>().enabled = true; //Show the blue shield
-            isInvulnerable = true;
-            deathTime = Time.time;
-
             //Fire an event unless you're colliding with something of your own type(tag)
             if (!this.tag.Equals(col.gameObject.tag))
                 collisionEvent(this, col.gameObject);
+
+            isInvulnerable = true;
+            deathTime = Time.time;
+
         }
     }
 
