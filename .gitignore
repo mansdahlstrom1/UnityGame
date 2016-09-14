@@ -31,3 +31,6 @@ Game/Temp**
 !Game/Assets/plugins/*.dll
 
 Game/testbuild_Data**
+
+Game/ProjectSettings/ProjectSettings.asset
+Game/ProjectSettings/ProjectVersion.txt
