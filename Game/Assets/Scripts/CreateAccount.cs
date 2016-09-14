@@ -7,12 +7,11 @@ public class CreateAccount : MonoBehaviour {
 
     // State 0 = Login
     // State 1 = Create Account
-    private bool isCreateAccount = false;
+    public bool isCreateAccount = false;
     public GameObject LoginButton;
     public GameObject CreateAccountText;
     public EventSystem eventSystem;
     public Text LoginButtonText;
-
 
     public void createAccountClick()
     {

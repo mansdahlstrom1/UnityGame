@@ -11,10 +11,13 @@ public class Login : MonoBehaviour
 
     private string username;
     private string password;
+    private string confirmPassword;
     public Text ErrorMessage;
+    public CreateAccount createAccount;
 
     public string Username { set { username = value; } get { return username; } }
     public string Password { set { password = value; } get { return password; } }
+    public string ConfirmPassword { set { confirmPassword = value; } get { return confirmPassword; } }
 
     EventSystem system;
 
@@ -52,36 +55,59 @@ public class Login : MonoBehaviour
 
 
 
-    public void LoginUser()
+    public void SubmitForm()
     {
-        if (Username != null && Password != null)
+        Debug.Log("test1");
+        Debug.Log(createAccount.isCreateAccount + "hejhej");
+        if (!createAccount.isCreateAccount)
         {
-            if (Username.Length > 0 && Password.Length > 0)
-            {
-                DBController controller = new DBController();
-                Player p = controller.GetCompletePlayer(username);
 
-                Debug.Log(p.Username.Length);
-                if (p == null || p.Username.Length == 0)
+            if (Username != null && Password != null)
+            {
+                if (Username.Length > 0 && Password.Length > 0)
                 {
-                    ErrorMessage.text = "Invalid Username \n Please try again";
+                    DBController controller = new DBController();
+                    Player p = controller.GetCompletePlayer(username);
+
+                    Debug.Log(p.Username.Length);
+                    if (p == null || p.Username.Length == 0)
+                    {
+                        ErrorMessage.text = "Invalid Username \n Please try again";
+                    }
+                    else
+                    {
+                        Utils.ChangeScene("MainMenu");
+                    }
+
                 }
                 else
                 {
-                    Utils.ChangeScene("MainMenu");
+                    ErrorMessage.text = "Please enter both Username and Password";
                 }
-
             }
             else
             {
                 ErrorMessage.text = "Please enter both Username and Password";
             }
+
         }
         else
         {
-            ErrorMessage.text = "Please enter both Username and Password";
+            // Create Account Logic
+            if (Username != null && Password != null && ConfirmPassword != null)
+            {
+                if (Password != ConfirmPassword)
+                {
+                    ErrorMessage.text = "Please enter all Fields";
+                    return;
+                }
+
+                System.Console.WriteLine("hey u made it! JK!");
+            }
+            else
+            {
+                ErrorMessage.text = "Please enter all Fields";
+            }
         }
     }
-
-
 }
