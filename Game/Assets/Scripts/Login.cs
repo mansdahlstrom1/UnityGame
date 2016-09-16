@@ -69,17 +69,22 @@ public class Login : MonoBehaviour
                     DBController controller = new DBController();
                     Player p = controller.GetCompletePlayer(username);
 
-                    Debug.Log(p.Username.Length);
-                    if (p == null || p.Username.Length == 0)
+                    if (p != null)
                     {
+                        if (p.checkPassword(Password))
+                        {
+                            Utils.ChangeScene("MainMenu");
+                        } else
+                        {
+                            ErrorMessage.text = "Invalid Password \n Please try again";
+                        }
+         
+                        
+                    } else { 
                         ErrorMessage.text = "Invalid Username \n Please try again";
                     }
-                    else
-                    {
-                        Utils.ChangeScene("MainMenu");
-                    }
 
-                }
+            }
                 else
                 {
                     ErrorMessage.text = "Please enter both Username and Password";
@@ -98,11 +103,21 @@ public class Login : MonoBehaviour
             {
                 if (Password != ConfirmPassword)
                 {
-                    ErrorMessage.text = "Please enter all Fields";
+                    ErrorMessage.text = "Passwords entered does not match.";
                     return;
                 }
+                DBController controller = new DBController();
+                Player createdPlayer = controller.CreateUser(Username, Password);
+                if (createdPlayer != null)
+                {
+                    ErrorMessage.text = "Account Was created!";
+                }
+                else
+                {
+                    ErrorMessage.text = "Something Went Wrong";
+                } 
 
-                System.Console.WriteLine("hey u made it! JK!");
+               
             }
             else
             {

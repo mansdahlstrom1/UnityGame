@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using System.Security.Cryptography;
+using System.Text;
 using UnityEngine;
 
 namespace DBConnector
@@ -90,7 +92,22 @@ namespace DBConnector
 
         }
 
+        public Player CreateUser(string username, string password)
+        {
+            Byte[] data = System.Text.Encoding.UTF8.GetBytes(password);
+            Byte[] hash = new SHA256CryptoServiceProvider().ComputeHash(data);
+            string hashString = Convert.ToBase64String(hash);
 
+            string url = BaseURL +
+                "op=createUser" +
+                "&u=" + username +
+                "&h=" + hashString;
+
+            string result = new WebClient().DownloadString(url);
+            Debug.Log("Result from CreateUser = " + result);
+            Player p = GetCompletePlayer(username);
+            return p;
+        }
     }
 
     [Serializable]

@@ -2,6 +2,7 @@
 using System.Collections;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 public class Player {
 
@@ -29,14 +30,36 @@ public class Player {
     public int GetBestScore()
     {
         int bestScore = 0;
-        for (var i = 0; i < playerRounds.Count; i++)
+        if(playerRounds != null)
         {
-            if (playerRounds[i].Score > bestScore)
+            for (var i = 0; i < playerRounds.Count; i++)
             {
-                bestScore = playerRounds[i].Score;
+                if (playerRounds[i].Score > bestScore)
+                {
+                    bestScore = playerRounds[i].Score;
+                }
             }
         }
         return bestScore;
     }
 
+    public bool checkPassword(string password)
+    {
+        Byte[] data = System.Text.Encoding.UTF8.GetBytes(password);
+        Byte[] hash = new SHA256CryptoServiceProvider().ComputeHash(data);
+        string hashedPassword = Convert.ToBase64String(hash);
+        string fixedHash = this.Hash.Replace(" ", "+");
+        Debug.Log("p.hash = " + fixedHash);
+        Debug.Log("entered = " + hashedPassword);
+
+        if (fixedHash == hashedPassword)
+        {
+            Debug.Log("True");
+            return true;
+        } else
+        {
+            Debug.Log("False");
+            return false;
+        }
+    }
 }
