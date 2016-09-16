@@ -4,6 +4,6 @@ UnityGame is a open source school project created by students studying at the de
 
 
 # Todo
-* Create account
-* Sign in
+* Create account - DONE
+* Sign in - DONE
 * Choose number of players
