@@ -12,19 +12,19 @@ namespace DBConnector
         private string BaseURL = "http://81.186.252.203/webservice/VetrarbrautinWebService.php?";
 
 
-        public Player GetUserByUsername(string username)
+        public void GetUserByUsername(string username)
         {
             string url = BaseURL + "op=findUserByUsername&username=" + username;
             string json = new WebClient().DownloadString(url);
             PersonData pd = JsonUtility.FromJson<PersonData>(json);
-            Player p = pd.GetPlayer();
-            return p;
+            pd.GetPlayer();
         }
 
         public Options GetUserOptions(string username)
         {
             string url = BaseURL+"op=findUserOptions&username=" + username;
             var json = new WebClient().DownloadString(url);
+            Debug.Log(json);
             OptionData od = JsonUtility.FromJson<OptionData>(json);
             Options userOptions = od.GetOptions();
             return userOptions;
@@ -32,8 +32,13 @@ namespace DBConnector
 
         public List<Round> GetPlayerRounds(string username)
         {
-            string url = BaseURL + "op=findUserRounds&username=" + username;
+            string url = BaseURL + "op=findUserRounds&u=" + username;
             string json = new WebClient().DownloadString(url);
+            Debug.Log(json);
+            if (json == "\"No Rounds found\"")
+            {
+                return new List<Round>();
+            }
             string newJson = "{\"Items\":" + json + "}";
             Debug.Log(newJson);
             RoundData[] roundDataList;
@@ -52,8 +57,13 @@ namespace DBConnector
 
         public List<Upgrade> GetPlayerUpgrades(string username)
         {
-            string url = BaseURL + "op=findUserUpgrades&username=" + username;
+            string url = BaseURL + "op=findUserUpgrades&u=" + username;
             string json = new WebClient().DownloadString(url);
+            Debug.Log(json.Equals("\"No Upgrades Found\""));
+            if (json == "\"No Upgrades Found\"")
+            {
+                return new List<Upgrade>();
+            }
             string newJson = "{\"Items\":" + json + "}";
             Debug.Log(newJson);
             UpgradeData[] upgradeDataList;
@@ -70,13 +80,23 @@ namespace DBConnector
             return playerUpgrades;
         }
 
-        public Player GetCompletePlayer(string username)
+        public void GetCompletePlayer(string username)
         {
-            Player p = GetUserByUsername(username);
-            //p.Options = GetUserOptions(username);
-            //p.PlayerRounds = GetPlayerRounds(username);
-            //p.PlayerUpgrades = GetPlayerUpgrades(username);
-            return p;
+            GetUserByUsername(username);
+            //Options op = GetUserOptions(username);
+            Player.PlayerRounds = GetPlayerRounds(username);
+            List<Upgrade> pu = GetPlayerUpgrades(username);
+           
+            // here we need to check a local file for settings;
+            Player.Options = new Options();
+      
+            if (pu != null)
+            {
+                Player.PlayerUpgrades = pu;
+            } else
+            {
+                Player.PlayerUpgrades = new List<Upgrade>();
+            }
         }
 
         public void CreateRound(Round r, string username)
@@ -92,7 +112,7 @@ namespace DBConnector
 
         }
 
-        public Player CreateUser(string username, string password)
+        public void CreateUser(string username, string password)
         {
             Byte[] data = System.Text.Encoding.UTF8.GetBytes(password);
             Byte[] hash = new SHA256CryptoServiceProvider().ComputeHash(data);
@@ -105,8 +125,7 @@ namespace DBConnector
 
             string result = new WebClient().DownloadString(url);
             Debug.Log("Result from CreateUser = " + result);
-            Player p = GetCompletePlayer(username);
-            return p;
+            GetCompletePlayer(username);
         }
     }
 
@@ -121,16 +140,14 @@ namespace DBConnector
         public bool isAdmin;
 
 
-        public Player GetPlayer()
+        public void GetPlayer()
         {
-            Player p = new Player();
-            p.Username = username;
-            p.Hash = hash;
-            p.Created = created;
-            p.Activty = activity;
-            p.Coins = coins;
-            p.IsAdmin = isAdmin;
-            return p;
+            Player.Username = username;
+            Player.Hash = hash;
+            Player.Created = created;
+            Player.Activty = activity;
+            Player.Coins = coins;
+            Player.IsAdmin = isAdmin;
         }
     }
 
@@ -214,7 +231,7 @@ namespace DBConnector
     {
         public static T[] FromJson<T>(string json)
         {
-            Wrapper<T> wrapper = UnityEngine.JsonUtility.FromJson<Wrapper<T>>(json);
+            Wrapper<T> wrapper = JsonUtility.FromJson<Wrapper<T>>(json);
             return wrapper.Items;
         }
 

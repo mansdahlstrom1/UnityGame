@@ -9,20 +9,19 @@ public class GameOverScript : MonoBehaviour
     public Text Duration;
     public Text Coins;
 
-    Player p;
     Round playedRound;
 
     DBController conn = new DBController();
 
     void Start()
     {
-        p = new Player();
-        int latestRoundIndex = p.PlayerRounds.Count - 1;
-        playedRound = p.PlayerRounds[latestRoundIndex];
+        
+        int latestRoundIndex = Player.PlayerRounds.Count - 1;
+        playedRound = Player.PlayerRounds[latestRoundIndex];
         Score.text = playedRound.Score.ToString();
         Duration.text = playedRound.Duration.ToString();
         Coins.text = playedRound.Coins.ToString();
-        conn.CreateRound(playedRound, p.Username);
+        conn.CreateRound(playedRound, Player.Username);
 
     }
 }

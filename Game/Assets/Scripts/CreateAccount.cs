@@ -16,18 +16,21 @@ public class CreateAccount : MonoBehaviour {
     public void createAccountClick()
     {
         Button btn = LoginButton.GetComponent<Button>();
-        Text text = CreateAccountText.GetComponent<Text>();
+        Text cat = CreateAccountText.GetComponent<Text>();
         if (!isCreateAccount)
         {   
             moveDown(btn);
-            moveDown(text);
+            moveDown(cat);
             LoginButtonText.text = "Create Account";
+            cat.text = "Go back to login";
         } else
         {
             moveUp(btn);
-            moveUp(text);
+            moveUp(cat);
             LoginButtonText.text = "Login";
-            
+            cat.text = "Don't have and account?";
+
+
         }
 
         isCreateAccount = !isCreateAccount;

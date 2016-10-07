@@ -154,17 +154,16 @@ public class GameScript : MonoBehaviour
                     r.Score = score;
                     r.Duration = (int)Time.time - (int)roundStart;
                     r.Coins = 500;
-                    Player p = new Player();
-                    p.PlayerRounds.Add(r);
+                    Player.PlayerRounds.Add(r);
+
+                    Utils.ChangeScene("GameOver");
+
                 }
                 catch (Exception e)
                 {
-                    //The round was not saved.
+                    Debug.Log("Failed to create round; msg = " + e);   
                 }
-                finally
-                {
-                    Utils.ChangeScene("GameOver");
-                }
+               
             }
         }
     }

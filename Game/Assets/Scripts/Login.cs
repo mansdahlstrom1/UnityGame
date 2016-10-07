@@ -57,8 +57,6 @@ public class Login : MonoBehaviour
 
     public void SubmitForm()
     {
-        Debug.Log("test1");
-        Debug.Log(createAccount.isCreateAccount + "hejhej");
         if (!createAccount.isCreateAccount)
         {
 
@@ -67,24 +65,27 @@ public class Login : MonoBehaviour
                 if (Username.Length > 0 && Password.Length > 0)
                 {
                     DBController controller = new DBController();
-                    Player p = controller.GetCompletePlayer(username);
+                    controller.GetCompletePlayer(username);
 
-                    if (p != null)
+                    if (Player.Username != null)
                     {
-                        if (p.checkPassword(Password))
+                        if (Player.checkPassword(Password))
                         {
                             Utils.ChangeScene("MainMenu");
-                        } else
+                        }
+                        else
                         {
                             ErrorMessage.text = "Invalid Password \n Please try again";
                         }
-         
-                        
-                    } else { 
+
+
+                    }
+                    else
+                    {
                         ErrorMessage.text = "Invalid Username \n Please try again";
                     }
 
-            }
+                }
                 else
                 {
                     ErrorMessage.text = "Please enter both Username and Password";
@@ -107,17 +108,18 @@ public class Login : MonoBehaviour
                     return;
                 }
                 DBController controller = new DBController();
-                Player createdPlayer = controller.CreateUser(Username, Password);
-                if (createdPlayer != null)
+                controller.CreateUser(Username, Password);
+                if (Player.Username != null)
                 {
                     ErrorMessage.text = "Account Was created!";
+                    createAccount.createAccountClick();
                 }
                 else
                 {
                     ErrorMessage.text = "Something Went Wrong";
-                } 
+                }
 
-               
+
             }
             else
             {

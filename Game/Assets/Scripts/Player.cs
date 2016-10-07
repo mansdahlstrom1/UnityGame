@@ -4,7 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 
-public class Player {
+public static class Player
+{
 
     static string username;
     static DateTime activity;
@@ -16,18 +17,18 @@ public class Player {
     static List<Round> playerRounds;
     static List<Upgrade> playerUpgrades;
 
-    public string Username { get { return username; } set { username = value; } }
-    public DateTime Activty { get { return activity; } set { activity = value; } }
-    public bool IsAdmin { get { return isAdmin; } set { isAdmin = value; } }
-    public int Coins { get { return coins; } set { coins = value; } }
-    public DateTime Created { get { return created; } set { created = value; } }
-    public string Hash { get { return hash; } set { hash = value; } }
-    public Options Options { get { return options; } set { options = value; } }
-    public List<Round> PlayerRounds { get { return playerRounds; } set { playerRounds = value; } }
-    public List<Upgrade> PlayerUpgrades { get { return playerUpgrades; } set { playerUpgrades = value; } }
+    public static string Username { get { return username; } set { username = value; } }
+    public static DateTime Activty { get { return activity; } set { activity = value; } }
+    public static bool IsAdmin { get { return isAdmin; } set { isAdmin = value; } }
+    public static int Coins { get { return coins; } set { coins = value; } }
+    public static DateTime Created { get { return created; } set { created = value; } }
+    public static string Hash { get { return hash; } set { hash = value; } }
+    public static Options Options { get { return options; } set { options = value; } }
+    public static List<Round> PlayerRounds { get { return playerRounds; } set { playerRounds = value; } }
+    public static List<Upgrade> PlayerUpgrades { get { return playerUpgrades; } set { playerUpgrades = value; } }
 
 
-    public int GetBestScore()
+    public static int GetBestScore()
     {
         int bestScore = 0;
         if(playerRounds != null)
@@ -43,12 +44,12 @@ public class Player {
         return bestScore;
     }
 
-    public bool checkPassword(string password)
+    public static bool checkPassword(string password)
     {
         Byte[] data = System.Text.Encoding.UTF8.GetBytes(password);
         Byte[] hash = new SHA256CryptoServiceProvider().ComputeHash(data);
         string hashedPassword = Convert.ToBase64String(hash);
-        string fixedHash = this.Hash.Replace(" ", "+");
+        string fixedHash = Hash.Replace(" ", "+");
         Debug.Log("p.hash = " + fixedHash);
         Debug.Log("entered = " + hashedPassword);
 

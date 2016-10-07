@@ -4,10 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
-{
-
-    Player p = new Player();
-    
+{    
     void Start()
     {
     }
