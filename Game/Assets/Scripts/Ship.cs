@@ -16,9 +16,7 @@ namespace Assets.Scripts
         protected Rigidbody2D r2d;
         protected Vector2 velocity;
         protected float nextFire;
-
-        public bool isActive;
-
+        
         public void Shoot()
         {
             if (Time.time > nextFire)

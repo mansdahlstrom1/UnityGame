@@ -142,8 +142,8 @@ public class PlayerShip : Ship
         if (!isInvulnerable && col.gameObject.tag.Equals("Enemy"))
         {
             //Fire an event unless you're colliding with something of your own type(tag)
-            if (!this.tag.Equals(col.gameObject.tag))
-                collisionEvent(this, col.gameObject);
+            //if (!this.tag.Equals(col.gameObject.tag))
+                //collisionEvent(this, col.gameObject);
 
             isInvulnerable = true;
             deathTime = Time.time;
