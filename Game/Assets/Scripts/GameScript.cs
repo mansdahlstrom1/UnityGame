@@ -46,7 +46,8 @@ public class GameScript : MonoBehaviour
         //Add collision listener to all ships
         foreach (PlayerShip ship in players)
         {
-                ship.collisionEvent += new PlayerShip.CollisionEvent(CollisionHandler);
+            Instantiate(ship, new Vector3(0, -900), Quaternion.identity);
+            //ship.collisionEvent += new PlayerShip.CollisionEvent(CollisionHandler);
         }
 
         labelStyle.fontSize = 22;
