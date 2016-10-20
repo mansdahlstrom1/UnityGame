@@ -20,6 +20,9 @@ public class PlayerShip : Ship
     public float RollCooldown = 0.5f;
     public GameObject shield;
 
+    public bool ShopMode;
+    public bool Disabled;
+
     //Properties
     private bool isInvulnerable;
     public bool IsInvulnerable { get { return isInvulnerable; } set { isInvulnerable = value; } }
@@ -55,6 +58,10 @@ public class PlayerShip : Ship
     // Update is called once per frame
     void Update()
     {
+
+        if (Disabled)
+            return;
+
         if (isInvulnerable)
         {
             shield.GetComponent<Renderer>().enabled = true; //Show the blue shield
@@ -77,6 +84,12 @@ public class PlayerShip : Ship
         //else?
         //Roll
 
+        if (ShopMode)
+        {
+            /* SHOOT EM ALL */
+            //Shoot();
+            return;
+        }
 
         if (Input.GetAxis("Roll_P" + PlayerNumber) != 0)
         {
@@ -91,7 +104,6 @@ public class PlayerShip : Ship
 
             }
         }
-
 
         //Rotate
         Rotate(velocity);

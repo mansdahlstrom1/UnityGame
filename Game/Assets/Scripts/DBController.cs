@@ -9,7 +9,7 @@ namespace DBConnector
 {
     public class DBController
     {
-        private string BaseURL = "http://81.186.252.203/webservice/VetrarbrautinWebService.php?";
+        private string BaseURL = "http://81.186.252.203/webservice/VetrarbrautinWebService.php?v=tabortmig&";
 
 
         public void GetUserByUsername(string username)

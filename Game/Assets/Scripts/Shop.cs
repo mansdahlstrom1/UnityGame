@@ -27,6 +27,9 @@ public class Shop : MonoBehaviour
             }
             Button button = Instantiate(btn, new Vector3(my_x, my_y), Quaternion.identity, canvas.transform) as Button;
             GameObject ship = Instantiate(Resources.Load(path + file), new Vector3(my_x, my_y + 15), Quaternion.identity, canvas.transform) as GameObject;
+            PlayerShip shipFoRealz = ship.GetComponent<PlayerShip>();
+            shipFoRealz.ShopMode = true;
+            shipFoRealz.Disabled = true;
             Text btnText = button.GetComponentInChildren<Text>();
             btnText.text = file + "\n";
             //shipText.alignment = TextAnchor.MiddleCenter;
@@ -50,6 +53,7 @@ public class Shop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        // get selected item.
+        // set this playership from list top active for shooting
     }
 }
