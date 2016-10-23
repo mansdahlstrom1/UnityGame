@@ -12,19 +12,20 @@ UnityGame is a open source school project created by students studying at the de
 
 Currenty at v2:
 #### TODO
-* Generate a secutrity token at login in the game.
-..* Create a table in database saving the last token used by the user. After we require this token to comfirm that the user is contacting the API from within the game. Right now you can create both rounds and api directly from the browser.
+1. Generate a secutrity token at login in the game.
+
+2. Create a table in database saving the last token used by the user. After we require this token to comfirm that the user is contacting the API from within the game. Right now you can create both rounds and api directly from the browser.
 #### Endpoints
 
- - Base URL: http://81.186.252.203/webservice/api.php
- - Parameters
-    - Version (*)
-    - Operation (*)
-    - Parameter 1 (optional)
-    - Parameter 2 (optional)
-    - Parameter 3 (optional)
-    - Parameter 4 (optional)
-    - and so on...
+- Base URL: http://81.186.252.203/webservice/api.php
+- Parameters
+ - Version (*)
+ - Operation (*)
+ - Parameter 1 (optional)
+ - Parameter 2 (optional)
+ - Parameter 3 (optional)
+ - Parameter 4 (optional)
+ - and so on...
     
 Example request with version and operation without parameter: 
 
