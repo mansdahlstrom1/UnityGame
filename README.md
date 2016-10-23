@@ -3,18 +3,16 @@
 UnityGame is a open source school project created by students studying at the deparment of informatics at Lunds univsity. the game is called Vetrarbrautin, a space 2d shooter game currently in development.
 
 
-# Todo
+## Todo
 * Create account - DONE
 * Sign in - DONE
 * Choose number of players
+* Generate a secutrity token at login in the game. Create a table in database saving the last token used by the user. After we require this token to comfirm that the user is contacting the API from within the game. Right now you can create both rounds and api directly from the browser.
 
-# API Endpoint
+## API Endpoint
 
 Currenty at v2:
-#### TODO
-1. Generate a secutrity token at login in the game.
 
-2. Create a table in database saving the last token used by the user. After we require this token to comfirm that the user is contacting the API from within the game. Right now you can create both rounds and api directly from the browser.
 #### Endpoints
 
 - Base URL: http://81.186.252.203/webservice/api.php
@@ -35,7 +33,7 @@ Example request with optional parameters
 
 http://81.186.252.203/webservice/api.php/v1/findUserByUsername/Dahlan1337
 
-# Avaliable Functions and their parameters
+#### Avaliable Functions and their parameters
 - createRound
      - username
      - Score
