@@ -9,6 +9,9 @@ UnityGame is a open source school project created by students studying at the de
 * Choose number of players
 
 # API Endpoint
+
+Currenty at v2
+
  - Base URL: http://81.186.252.203/webservice/api.php
  - Parameters
     - Version (*)
