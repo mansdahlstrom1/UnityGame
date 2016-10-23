@@ -7,3 +7,19 @@ UnityGame is a open source school project created by students studying at the de
 * Create account - DONE
 * Sign in - DONE
 * Choose number of players
+
+# API Endpoint
+ - Base URL: http://81.186.252.203/webservice/api.php
+ - Parameters
+    - Version (*)
+    - Operation (*)
+    - Parameter 1 (optional)
+    - Parameter 2 (optional)
+    - Parameter 3 (optional)
+    - Parameter 4 (optional)
+    - and so on...
+Example request with version and operation without parameter: 
+http://81.186.252.203/webservice/api.php/v1/findUserByUsername
+
+Example request with optional parameters
+http://81.186.252.203/webservice/api.php/v1/findUserByUsername/Dahlan1337
