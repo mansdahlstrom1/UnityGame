@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: f7a63c916dc51c64d98a6162137ea896
 timeCreated: 1476873679
+=======
+guid: be4797ad3449a2d4a8c1120251ffb591
+timeCreated: 1475886459
+>>>>>>> Added GetAllUpgrades functions toDBController
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

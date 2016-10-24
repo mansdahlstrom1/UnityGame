@@ -9,8 +9,30 @@ namespace DBConnector
 {
     public class DBController
     {
-        private string BaseURL = "http://81.186.252.203/webservice/VetrarbrautinWebService.php?v=tabortmig&";
+        private string BaseURL = "http://81.186.252.203/webservice/VetrarbrautinWebService.php?";
 
+        public List<Upgrade> GetAllUpgrades()
+        {
+            string url = ""; // Fix this
+            string json = new WebClient().DownloadString(url);
+            if (json == "\"No Upgrades Found\"")
+            {
+                return new List<Upgrade>();
+            }
+            string newJson = "{\"Items\":" + json + "}";
+            Debug.Log(newJson);
+            UpgradeData[] upgradeDataList;
+            upgradeDataList = JsonHelper.FromJson<UpgradeData>(newJson);
+            List<Upgrade> allUpgrades = new List<Upgrade>();
+            Debug.Log(upgradeDataList.Length);
+            for (var i = 0; i < upgradeDataList.Length; i++)
+            {
+                UpgradeData ud = upgradeDataList[i];
+                Upgrade u = ud.GetUpgrade();
+                allUpgrades.Add(u);
+            }
+            return allUpgrades;
+        }
 
         public void GetUserByUsername(string username)
         {
