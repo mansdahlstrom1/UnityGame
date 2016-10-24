@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 
 public class GameScript : MonoBehaviour
 {
-
     //Game Logic
     public int playerLives = 3;
     public int score = 0;
@@ -39,6 +38,7 @@ public class GameScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        PlayerShip.lives = playerLives;
         roundStart = Time.time;
 
         labelStyle.border = new RectOffset(10, 10, 10, 10);
@@ -68,7 +68,10 @@ public class GameScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        //SpawnEnemies();
+        if (PlayerShip.lives < 1)
+            GameOver();
+
+        SpawnEnemies();
         SpawnAsteroids();
         SpawnBoss();
 
@@ -138,34 +141,22 @@ public class GameScript : MonoBehaviour
         }
     }
 
-    void CollisionHandler(MonoBehaviour me, GameObject other)
+    void GameOver()
     {
-        if (me.tag.Equals("Player") && other.tag.Equals("Enemy"))
+        try
         {
-            if (playerLives > 0)
-            {
-                if (!me.GetComponent<PlayerShip>().IsInvulnerable)
-                    playerLives--;
-            }
-            else
-            {
-                try
-                {
-                    Round r = new Round();
-                    r.Score = score;
-                    r.Duration = (int)Time.time - (int)roundStart;
-                    r.Coins = 500;
-                    Player.PlayerRounds.Add(r);
+            Round r = new Round();
+            r.Score = score;
+            r.Duration = (int)Time.time - (int)roundStart;
+            r.Coins = 500;
+            Player.PlayerRounds.Add(r);
 
-                    Utils.ChangeScene("GameOver");
+            Utils.ChangeScene("GameOver");
 
-                }
-                catch (Exception e)
-                {
-                    Debug.Log("Failed to create round; msg = " + e);   
-                }
-               
-            }
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Failed to create round; msg = " + e);
         }
     }
 }

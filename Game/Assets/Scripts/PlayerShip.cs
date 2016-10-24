@@ -20,6 +20,8 @@ public class PlayerShip : Ship
     public float RollCooldown = 0.5f;
     public GameObject shield;
 
+    public static int lives;
+
     public bool ShopMode;
     public bool Disabled;
 
@@ -153,10 +155,7 @@ public class PlayerShip : Ship
         //If the shield is down and you're colliding with an enemy
         if (!isInvulnerable && col.gameObject.tag.Equals("Enemy"))
         {
-            //Fire an event unless you're colliding with something of your own type(tag)
-            //if (!this.tag.Equals(col.gameObject.tag))
-                //collisionEvent(this, col.gameObject);
-
+            PlayerShip.lives--;
             isInvulnerable = true;
             deathTime = Time.time;
 
