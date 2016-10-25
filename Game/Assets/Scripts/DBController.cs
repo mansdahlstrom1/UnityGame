@@ -44,7 +44,7 @@ namespace DBConnector
 
         public Options GetUserOptions(string username)
         {
-            string url = BaseURL+"findUserOptions/=" + username;
+            string url = BaseURL + "findUserOptions/=" + username;
             var json = new WebClient().DownloadString(url);
             Debug.Log(json);
             OptionData od = JsonUtility.FromJson<OptionData>(json);
@@ -82,7 +82,7 @@ namespace DBConnector
             string url = BaseURL + "findUserUpgrades/" + username;
             string json = new WebClient().DownloadString(url);
             Debug.Log(json.Equals("\"No Upgrades Found\""));
-            if (json == "\"No Upgrades Found\"")
+            if (json == "\"No Upgrades Found\"" || 1 == 1) 
             {
                 return new List<Upgrade>();
             }
@@ -140,7 +140,7 @@ namespace DBConnector
             Byte[] hash = new SHA256CryptoServiceProvider().ComputeHash(data);
             string hashString = Convert.ToBase64String(hash);
 
-            hashString.Replace("/", "-");
+            hashString = hashString.Replace("/", "-");
 
             string url = BaseURL +
                 "createUser" +
@@ -161,7 +161,7 @@ namespace DBConnector
         public DateTime created;
         public DateTime activity;
         public int coins;
-        public bool isAdmin;
+        public string active_upgrade;
 
 
         public void GetPlayer()
@@ -171,7 +171,7 @@ namespace DBConnector
             Player.Created = created;
             Player.Activty = activity;
             Player.Coins = coins;
-            Player.IsAdmin = isAdmin;
+            Player.Active_upgrade = active_upgrade;
         }
     }
 

@@ -17,7 +17,7 @@ public class GameScript : MonoBehaviour
     GUIStyle labelStyle = new GUIStyle();
 
     //Player
-    public List<PlayerShip> players;
+    public List<PlayerShip> players = new List<PlayerShip>();
 
     //Boss
     public GameObject boss;
@@ -38,16 +38,19 @@ public class GameScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+        Debug.Log(Player.Active_upgrade);
+        PlayerShip ps = Resources.Load<PlayerShip>("prefabs/Player/ships/" + Player.Active_upgrade);
+        players.Add(ps);
+
         PlayerShip.lives = playerLives;
         roundStart = Time.time;
 
         labelStyle.border = new RectOffset(10, 10, 10, 10);
 
-        //Add collision listener to all ships
         foreach (PlayerShip ship in players)
         {
             Instantiate(ship, new Vector3(0, -900), Quaternion.identity);
-            //ship.collisionEvent += new PlayerShip.CollisionEvent(CollisionHandler);
         }
 
         labelStyle.fontSize = 22;
