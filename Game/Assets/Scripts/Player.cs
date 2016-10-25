@@ -46,9 +46,12 @@ public static class Player
 
     public static bool checkPassword(string password)
     {
+        // Input password
         Byte[] data = System.Text.Encoding.UTF8.GetBytes(password);
         Byte[] hash = new SHA256CryptoServiceProvider().ComputeHash(data);
-        string hashedPassword = Convert.ToBase64String(hash);
+        string hashedPassword = Convert.ToBase64String(hash).Replace("-", "/");
+
+        // Password for DB
         string fixedHash = Hash.Replace(" ", "+");
         Debug.Log("p.hash = " + fixedHash);
         Debug.Log("entered = " + hashedPassword);

@@ -9,11 +9,11 @@ namespace DBConnector
 {
     public class DBController
     {
-        private string BaseURL = "http://81.186.252.203/webservice/VetrarbrautinWebService.php?";
+        private string BaseURL = "http://81.186.252.203/webservice/api.php/v2/";
 
         public List<Upgrade> GetAllUpgrades()
         {
-            string url = ""; // Fix this
+            string url = "getAllUpgrades"; // Fix this
             string json = new WebClient().DownloadString(url);
             if (json == "\"No Upgrades Found\"")
             {
@@ -36,7 +36,7 @@ namespace DBConnector
 
         public void GetUserByUsername(string username)
         {
-            string url = BaseURL + "op=findUserByUsername&username=" + username;
+            string url = BaseURL + "findUserByUsername/" + username;
             string json = new WebClient().DownloadString(url);
             PersonData pd = JsonUtility.FromJson<PersonData>(json);
             pd.GetPlayer();
@@ -44,7 +44,7 @@ namespace DBConnector
 
         public Options GetUserOptions(string username)
         {
-            string url = BaseURL+"op=findUserOptions&username=" + username;
+            string url = BaseURL+"findUserOptions/=" + username;
             var json = new WebClient().DownloadString(url);
             Debug.Log(json);
             OptionData od = JsonUtility.FromJson<OptionData>(json);
@@ -54,7 +54,7 @@ namespace DBConnector
 
         public List<Round> GetPlayerRounds(string username)
         {
-            string url = BaseURL + "op=findUserRounds&u=" + username;
+            string url = BaseURL + "findUserRounds/" + username;
             string json = new WebClient().DownloadString(url);
             Debug.Log(json);
             if (json == "\"No Rounds found\"")
@@ -79,7 +79,7 @@ namespace DBConnector
 
         public List<Upgrade> GetPlayerUpgrades(string username)
         {
-            string url = BaseURL + "op=findUserUpgrades&u=" + username;
+            string url = BaseURL + "findUserUpgrades/" + username;
             string json = new WebClient().DownloadString(url);
             Debug.Log(json.Equals("\"No Upgrades Found\""));
             if (json == "\"No Upgrades Found\"")
@@ -124,11 +124,11 @@ namespace DBConnector
         public void CreateRound(Round r, string username)
         {
             string url = BaseURL +
-                "op=createRound" +
-                "&u=" + username +
-                "&s=" + r.Score +
-                "&d=" + r.Duration +
-                "&c=" + r.Coins;
+                "createRound" +
+                "/" + username +
+                "/" + r.Score +
+                "/" + r.Duration +
+                "/" + r.Coins;
            
             string result = new WebClient().DownloadString(url);
 
@@ -140,11 +140,13 @@ namespace DBConnector
             Byte[] hash = new SHA256CryptoServiceProvider().ComputeHash(data);
             string hashString = Convert.ToBase64String(hash);
 
-            string url = BaseURL +
-                "op=createUser" +
-                "&u=" + username +
-                "&h=" + hashString;
+            hashString.Replace("/", "-");
 
+            string url = BaseURL +
+                "createUser" +
+                "/" + username +
+                "/" + hashString;
+            Debug.Log(url);
             string result = new WebClient().DownloadString(url);
             Debug.Log("Result from CreateUser = " + result);
             GetCompletePlayer(username);
