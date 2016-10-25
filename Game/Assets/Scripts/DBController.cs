@@ -13,7 +13,7 @@ namespace DBConnector
 
         public List<Upgrade> GetAllUpgrades()
         {
-            string url = "getAllUpgrades"; // Fix this
+            string url = BaseURL + "getAllUpgrades";
             string json = new WebClient().DownloadString(url);
             if (json == "\"No Upgrades Found\"")
             {

@@ -25,6 +25,10 @@ public class PlayerShip : Ship
     public bool ShopMode;
     public bool Disabled;
 
+
+    // To match DB
+    public int cost;
+
     //Properties
     private bool isInvulnerable;
     public bool IsInvulnerable { get { return isInvulnerable; } set { isInvulnerable = value; } }
@@ -86,13 +90,6 @@ public class PlayerShip : Ship
         //else?
         //Roll
 
-        if (ShopMode)
-        {
-            /* SHOOT EM ALL */
-            //Shoot();
-            return;
-        }
-
         if (Input.GetAxis("Roll_P" + PlayerNumber) != 0)
         {
             if (Time.time > lastRoll + RollCooldown)
@@ -145,10 +142,6 @@ public class PlayerShip : Ship
         }
     }
 
-    //Collision event
-    public event CollisionEvent collisionEvent;
-    public delegate void CollisionEvent(MonoBehaviour me, GameObject obj);
-
     //Collision
     protected void OnTriggerEnter2D(Collider2D col)
     {
@@ -158,7 +151,6 @@ public class PlayerShip : Ship
             PlayerShip.lives--;
             isInvulnerable = true;
             deathTime = Time.time;
-
         }
     }
 

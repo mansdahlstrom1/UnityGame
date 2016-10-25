@@ -131,7 +131,7 @@ public class GameScript : MonoBehaviour
         style.fontSize = 18;
         style.normal.textColor = Color.white;
 
-        GUI.Label(new Rect(10, 10, 200, 22), "Lives: " + playerLives, style);
+        GUI.Label(new Rect(10, 10, 200, 22), "Lives: " + PlayerShip.lives, style);
         GUI.Label(new Rect(10, 32, 200, 22), "Score: " + score, style);
 
         if (isPause)
