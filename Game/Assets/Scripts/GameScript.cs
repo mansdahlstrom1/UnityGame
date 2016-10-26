@@ -13,6 +13,9 @@ public class GameScript : MonoBehaviour
     public int score = 0;
     public bool isPause = false;
     public float roundStart;
+
+    public static int coinsEarned = 0;
+
     //GUI
     GUIStyle labelStyle = new GUIStyle();
 
@@ -136,6 +139,7 @@ public class GameScript : MonoBehaviour
 
         GUI.Label(new Rect(10, 10, 200, 22), "Lives: " + PlayerShip.lives, style);
         GUI.Label(new Rect(10, 32, 200, 22), "Score: " + score, style);
+        GUI.Label(new Rect(10, 54, 200, 22), "Coins: " + coinsEarned, style);
 
         if (isPause)
         {
@@ -151,7 +155,7 @@ public class GameScript : MonoBehaviour
             Round r = new Round();
             r.Score = score;
             r.Duration = (int)Time.time - (int)roundStart;
-            r.Coins = 500;
+            r.Coins = coinsEarned;
             Player.PlayerRounds.Add(r);
 
             Utils.ChangeScene("GameOver");

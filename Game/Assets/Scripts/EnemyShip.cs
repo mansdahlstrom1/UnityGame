@@ -10,6 +10,8 @@ public class EnemyShip : Ship
 
     public int lives = 3;
 
+    public int coins = 0;
+
     // Use this for initialization
     void Start()
     {
@@ -60,7 +62,10 @@ public class EnemyShip : Ship
             if (lives > 0)
                 lives--;
             else
+            {
+                GameScript.coinsEarned += coins;
                 Destroy(gameObject);
+            }
         }
     }
 }

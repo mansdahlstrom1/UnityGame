@@ -11,6 +11,8 @@ public class Asteroid : MonoBehaviour
 
     private Rigidbody2D r2d;
 
+    public int coins;
+
     // Use this for initialization
     void Start()
     {
@@ -35,6 +37,7 @@ public class Asteroid : MonoBehaviour
     {
         if (col.gameObject.tag.Equals("Missile"))
         {
+            GameScript.coinsEarned += coins;
             Destroy(gameObject);
         }
     }
