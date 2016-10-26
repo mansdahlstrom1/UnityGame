@@ -81,8 +81,7 @@ namespace DBConnector
         {
             string url = BaseURL + "findUserUpgrades/" + username;
             string json = new WebClient().DownloadString(url);
-            Debug.Log(json.Equals("\"No Upgrades Found\""));
-            if (json == "\"No Upgrades Found\"" || 1 == 1) 
+            if (json == "\"No Upgrades Found\"") 
             {
                 return new List<Upgrade>();
             }
@@ -114,6 +113,8 @@ namespace DBConnector
       
             if (pu != null)
             {
+                Debug.Log("Are we here?");
+                Debug.Log(pu.Count);
                 Player.PlayerUpgrades = pu;
             } else
             {
@@ -150,6 +151,18 @@ namespace DBConnector
             string result = new WebClient().DownloadString(url);
             Debug.Log("Result from CreateUser = " + result);
             GetCompletePlayer(username);
+        }
+
+        public void buyUpgrade(string upgradeName)
+        {
+            string url = BaseURL + "buyUpgrade/" + Player.Username + "/" + upgradeName;
+            string result = new WebClient().DownloadString(url);
+        }
+
+        public void equipUpgrade(string upgradeName)
+        {
+            string url = BaseURL + "equipUpgrade/" + Player.Username + "/" + upgradeName;
+            string result = new WebClient().DownloadString(url);
         }
     }
 
@@ -201,17 +214,13 @@ namespace DBConnector
     public class UpgradeData
     {
         public string upgradeName;
-        public string imageUrl;
         public int cost;
-        public bool equiped;
 
         public Upgrade GetUpgrade()
         {
             Upgrade u = new Upgrade();
             u.UpgradeName = upgradeName;
-            u.ImageUrl = imageUrl;
             u.Cost = cost;
-            u.Equiped = equiped;
             return u;
         }
     }

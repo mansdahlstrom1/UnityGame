@@ -22,6 +22,6 @@ public class GameOverScript : MonoBehaviour
         Duration.text = playedRound.Duration.ToString();
         Coins.text = playedRound.Coins.ToString();
         conn.CreateRound(playedRound, Player.Username);
-
+        conn.GetCompletePlayer(Player.Username);
     }
 }

@@ -14,27 +14,27 @@ public class PlayerInterface : MonoBehaviour {
     private Text[] texts;
     int sw = Screen.height;
     int sh = Screen.width;
-    Vector3 lowLeft = Camera.current.WorldToScreenPoint(new Vector3(0,0,0));
+    
 
-
-    //DBConnector.DBController db = new DBConnector.DBController();
+    DBConnector.DBController db = new DBConnector.DBController();
 
 
 
     // Use this for initialization
 
     void Start () {
-
-        Debug.Log(lowLeft.x + " - " + lowLeft.y);
-        Debug.Log(" screen height = " + sh + "screen Width = " + sw);
-
-        //db.GetCompletePlayer(Player.Username);
-        playerInterface = Resources.Load<GameObject>("Prefabs/Player/misc/PlayerInterface");
-        PlayerShip ps = playerInterface.GetComponentInChildren<PlayerShip>();
+        if (Player.Username != null)
+        {
+            db.GetCompletePlayer(Player.Username);
+            Debug.Log(Player.Active_upgrade);
+        }
+        playerInterface = Resources.Load<GameObject>("Prefabs/Player/Misc/PlayerInterface");
+        PlayerShip ps1 = Resources.Load<PlayerShip>("Prefabs/Player/Ships/" + Player.Active_upgrade);
+        PlayerShip ps = Instantiate(ps1, new Vector3(-130,0), Quaternion.identity, playerInterface.transform) as PlayerShip;
+        ps.transform.localScale = new Vector3(0.4f, 0.4f, 1);
         float width = playerInterface.GetComponent<RectTransform>().rect.width;
         float height = playerInterface.GetComponent<RectTransform>().rect.height;
-        Vector3 psTransform = new Vector3((width / 2) + 20f, (height / 2) + 20f);
-        Debug.Log("Width: " + width + "; Height: " + height);
+        Vector3 psTransform = new Vector3((width / 2) -800f, (height / 2) -450f);
 
         ps.ShopMode = true;
         ps.Disabled = true;
@@ -53,7 +53,7 @@ public class PlayerInterface : MonoBehaviour {
             texts[2].text = rightText;
             texts[1].text = "<b>High Score: <color=#e5c100>" + Player.GetBestScore().ToString() + "</color></b>";
 
-            Instantiate(playerInterface, new Vector3(-100,-100), Quaternion.identity, gameObject.transform);
+            Instantiate(playerInterface, psTransform, Quaternion.identity, gameObject.transform);
 
         }
 
