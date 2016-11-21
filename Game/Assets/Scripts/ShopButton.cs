@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEditor;
 using DBConnector;
 using UnityEngine.SceneManagement;
+using UnityEngine.Events;
 
 public class ShopButton : MonoBehaviour, ISelectHandler {
     
@@ -17,7 +18,19 @@ public class ShopButton : MonoBehaviour, ISelectHandler {
     public bool equipped;
     public bool owned;
     DBController dbc;
-   
+
+    // modal panel
+    private ModalPanel modalPanel;
+
+    void Awake()
+    {
+        modalPanel = ModalPanel.Instance();
+        
+        myButton = GetComponent<Button>();
+
+        myButton.onClick.AddListener(Click);
+    }
+
     // Use this for initialization
     void Start () {
         dbc = new DBController();
@@ -26,15 +39,40 @@ public class ShopButton : MonoBehaviour, ISelectHandler {
 
     }
 
-    void Awake()
-    {
-        myButton = GetComponent<Button>();
+    private void DoNothing() { }
 
-        myButton.onClick.AddListener(Click);
+    private void EquipUpgrade()
+    {
+        Player.Active_upgrade = upgradeName;
+        dbc.equipUpgrade(upgradeName);
+
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
+
+    private void TryBuyUpgrade()
+    {
+        if (Player.Coins >= cost)
+        {
+            dbc.buyUpgrade(upgradeName);
+            Player.Coins -= cost;
+        }
+        else
+        {
+            string message = "Not enough coins\nYou are missing " + (cost - Player.Coins) + ". Play some more games and come back!";
+
+            modalPanel.Choice(message, new UnityAction(EquipUpgrade), new UnityAction(DoNothing), new UnityAction(DoNothing));
+        }
+
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
     }
 
     void Click()
     {
+
+        modalPanel.enabled = true;
+
         if (equipped)
         {
             Debug.Log("Eqippied click!");
@@ -42,36 +80,14 @@ public class ShopButton : MonoBehaviour, ISelectHandler {
         else if(owned)
         {
             string message = "Equip " + this.upgradeName + "?";
-            bool choice = EditorUtility.DisplayDialog("Confirm dialog", message, "Equip", "Cancel");
-
-            if (choice)
-            {
-                Player.Active_upgrade = upgradeName;
-                dbc.equipUpgrade(upgradeName);
-                Scene scene = SceneManager.GetActiveScene();
-                SceneManager.LoadScene(scene.name);
-            }
+            
+            modalPanel.Choice(message, new UnityAction(EquipUpgrade), new UnityAction(DoNothing), new UnityAction(DoNothing));
 
         } else
         {
             string message = "Buy " + this.upgradeName + " for " + this.cost + "?";
-            bool choice = EditorUtility.DisplayDialog("Confirm dialog", message, "Buy", "cancel");
-
-            if (choice)
-            {
-                if (Player.Coins >= cost)
-                {
-                    dbc.buyUpgrade(upgradeName);
-                    Player.Coins -= cost;
-                    Scene scene = SceneManager.GetActiveScene();
-                    SceneManager.LoadScene(scene.name);
-
-                }
-                else
-                {
-                    EditorUtility.DisplayDialog("Not enough coins", "You are missing " + (cost - Player.Coins) + ". Play some more games and come back!", "ok");
-                }
-            }
+            
+            modalPanel.Choice(message, new UnityAction(TryBuyUpgrade), new UnityAction(DoNothing), new UnityAction(DoNothing));
         }
     }
 

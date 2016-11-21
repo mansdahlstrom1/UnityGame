@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using DBConnector;
+using UnityEngine.Events;
 
 public class Shop : MonoBehaviour
 {
@@ -58,6 +59,7 @@ public class Shop : MonoBehaviour
             shopBtn.cost = upgrade.Cost;
             shopBtn.owned = ShipOwned;
             shopBtn.equipped = ShipEquipped;
+            /*shopBtn.image = */ Debug.Log(shipFoRealz.GetComponent<Image>());
             ships.Add(ship);
             my_x += 300;
             i++;
