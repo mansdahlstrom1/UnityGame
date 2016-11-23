@@ -107,8 +107,8 @@ public class Shop : MonoBehaviour
     public void Click(string upgradeName, int cost, int state)
     {
 
-        Shop.modalPanel.enabled = true;
-        EventSystem.current.SetSelectedGameObject(null);
+        modalPanel.enabled = true;
+        //EventSystem.current.SetSelectedGameObject(null);
         setValues(upgradeName, cost, state);
 
         if (state == (int)Utils.UpgradeStates.Equipped)
