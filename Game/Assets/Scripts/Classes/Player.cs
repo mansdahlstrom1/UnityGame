@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 
 public static class Player
 {
-
     static string username;
     static string hash;
     static DateTime activity;
@@ -27,7 +26,7 @@ public static class Player
     public static List<Round> PlayerRounds { get { return playerRounds; } set { playerRounds = value; } }
     public static List<Upgrade> PlayerUpgrades { get { return playerUpgrades; } set { playerUpgrades = value; } }
 
-
+   
     public static int GetBestScore()
     {
         int bestScore = 0;
@@ -53,17 +52,22 @@ public static class Player
 
         // Password from DB
         string fixedHash = Hash.Replace(" ", "+").Replace("-", "/");
-        Debug.Log("p.hash = " + fixedHash);
-        Debug.Log("entered = " + hashedPassword);
 
         if (fixedHash == hashedPassword)
         {
-            Debug.Log("True");
             return true;
         } else
         {
-            Debug.Log("False");
             return false;
         }
     }
+
+    public static void createTestUser()
+    {
+        username = "DebugUser";
+        coins = 10000000;
+        active_upgrade = "Dogpool";
+    }
+
+
 }

@@ -30,7 +30,6 @@ public class ShopButton : MonoBehaviour, ISelectHandler {
 
     void Start () {
 
-
     }
 
     public void setValues()

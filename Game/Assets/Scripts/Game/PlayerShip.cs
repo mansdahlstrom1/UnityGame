@@ -37,7 +37,7 @@ public class PlayerShip : Ship
     void Start()
     {
         r2d = GetComponent<Rigidbody2D>();
-
+        Debug.Log("PlayerNumber = " + PlayerNumber);
         Renderer renderer = GetComponent<Renderer>();
         shipBounds = new Rect(
             transform.position.x,

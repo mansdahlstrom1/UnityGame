@@ -20,11 +20,9 @@ namespace DBConnector
                 return new List<Upgrade>();
             }
             string newJson = "{\"Items\":" + json + "}";
-            Debug.Log(newJson);
             UpgradeData[] upgradeDataList;
             upgradeDataList = JsonHelper.FromJson<UpgradeData>(newJson);
             List<Upgrade> allUpgrades = new List<Upgrade>();
-            Debug.Log(upgradeDataList.Length);
             for (var i = 0; i < upgradeDataList.Length; i++)
             {
                 UpgradeData ud = upgradeDataList[i];
@@ -46,7 +44,6 @@ namespace DBConnector
         {
             string url = BaseURL + "findUserOptions/=" + username;
             var json = new WebClient().DownloadString(url);
-            Debug.Log(json);
             OptionData od = JsonUtility.FromJson<OptionData>(json);
             Options userOptions = od.GetOptions();
             return userOptions;
@@ -56,18 +53,15 @@ namespace DBConnector
         {
             string url = BaseURL + "findUserRounds/" + username;
             string json = new WebClient().DownloadString(url);
-            Debug.Log(json);
             if (json == "\"No Rounds found\"")
             {
                 return new List<Round>();
             }
             string newJson = "{\"Items\":" + json + "}";
-            Debug.Log(newJson);
             RoundData[] roundDataList;
             roundDataList = JsonHelper.FromJson<RoundData>(newJson);
             List<Round> playerRounds = new List<Round>();
 
-            Debug.Log(roundDataList.Length);
             for (var i = 0; i < roundDataList.Length; i++)
             {
                 RoundData rd = roundDataList[i];
@@ -86,12 +80,10 @@ namespace DBConnector
                 return new List<Upgrade>();
             }
             string newJson = "{\"Items\":" + json + "}";
-            Debug.Log(newJson);
             UpgradeData[] upgradeDataList;
             upgradeDataList = JsonHelper.FromJson<UpgradeData>(newJson);
             List<Upgrade> playerUpgrades = new List<Upgrade>();
 
-            Debug.Log(upgradeDataList.Length);
             for (var i = 0; i < upgradeDataList.Length; i++)
             {
                 UpgradeData ud = upgradeDataList[i];
@@ -113,8 +105,6 @@ namespace DBConnector
       
             if (pu != null)
             {
-                Debug.Log("Are we here?");
-                Debug.Log(pu.Count);
                 Player.PlayerUpgrades = pu;
             } else
             {
@@ -147,9 +137,7 @@ namespace DBConnector
                 "createUser" +
                 "/" + username +
                 "/" + hashString;
-            Debug.Log(url);
             string result = new WebClient().DownloadString(url);
-            Debug.Log("Result from CreateUser = " + result);
             GetCompletePlayer(username);
         }
 

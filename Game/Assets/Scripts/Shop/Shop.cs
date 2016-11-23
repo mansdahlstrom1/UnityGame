@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using DBConnector;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class Shop : MonoBehaviour
 {
     public GameObject canvas;
     List<GameObject> ships = new List<GameObject>();
-    
+    EventSystem ev;
     private DBController dbc = new DBController();
     private static ModalPanel modalPanel;
     // Use this for initialization
@@ -37,14 +38,13 @@ public class Shop : MonoBehaviour
     {
         modalPanel = ModalPanel.Instance();
         List<Upgrade> upgrades = dbc.GetAllUpgrades();
-
+        
         int state = 0;
 
-        int i = 0, my_x = -300, my_y = 100;
+        int i = 0, my_x = -300, my_y = 50;
         foreach (Upgrade upgrade in upgrades)
         {
-            ColorBlock colorBlock = ColorBlock.defaultColorBlock;
-            
+            //ColorBlock colorBlock = ColorBlock.defaultColorBlock;
             if (i % 3 == 0 && i != 0)
             { 
                 my_x = -300;
@@ -55,16 +55,8 @@ public class Shop : MonoBehaviour
             {
                 if (upgrade.UpgradeName.Equals(u.UpgradeName))
                 {
-                    if ( Player.Active_upgrade.Equals(u.UpgradeName)){
-                        Debug.Log(upgrade.UpgradeName + " Is euipped");
-                        colorBlock.normalColor = Colors.vPurple;
-                        state = (int) Utils.UpgradeStates.Equipped;
-                    } else
-                    {
-                        Debug.Log("this is mine! " + upgrade.UpgradeName);
-                        colorBlock.normalColor = Colors.vOrange;
-                        state = (int)Utils.UpgradeStates.Owned;
-                    }
+                    //colorBlock.normalColor = Colors.vOrange;
+                    state = (int)Utils.UpgradeStates.Owned;
                 }
             }
 
@@ -75,7 +67,7 @@ public class Shop : MonoBehaviour
             GameObject up = Instantiate(upgradePane, new Vector3(my_x, my_y), Quaternion.identity, canvas.transform) as GameObject;
 
             ShopButton shopBtn = up.GetComponent<ShopButton>();
-            shopBtn.myButton.colors = colorBlock;
+            //shopBtn.myButton.colors.
             shopBtn.upgradeName = upgrade.UpgradeName;
             shopBtn.cost = upgrade.Cost;
             shopBtn.state = state;
@@ -116,10 +108,12 @@ public class Shop : MonoBehaviour
     {
 
         Shop.modalPanel.enabled = true;
+        EventSystem.current.SetSelectedGameObject(null);
         setValues(upgradeName, cost, state);
+
         if (state == (int)Utils.UpgradeStates.Equipped)
         {
-            Debug.Log("Eqippied click!");
+            //Debug.Log("Eqippied click!");
         }
         else if (state == (int)Utils.UpgradeStates.Owned)
         {

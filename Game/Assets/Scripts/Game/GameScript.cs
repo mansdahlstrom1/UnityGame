@@ -44,8 +44,14 @@ public class GameScript : MonoBehaviour
     {
 
         Debug.Log(Player.Active_upgrade);
+
         PlayerShip ps = Resources.Load<PlayerShip>("prefabs/Player/ships/" + Player.Active_upgrade);
         players.Add(ps);
+
+        PlayerShip ps2 = Resources.Load<PlayerShip>("prefabs/Player/ships/" + Player.Active_upgrade);
+        ps2.PlayerNumber = 2;
+        players.Add(ps2);
+
         coinsEarned = 0;
         PlayerShip.lives = playerLives;
         roundStart = Time.time;
@@ -57,16 +63,22 @@ public class GameScript : MonoBehaviour
         {
             Instantiate(ship, new Vector3(0, -900), Quaternion.identity);
         }
-
+        UnPause();
         labelStyle.fontSize = 22;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetButton("Start"))
         {
-            PauseGame();
+            if (modalPanel.enabled)
+            {
+                PauseGame();
+            } else
+            {
+                UnPause();
+            }
         }
     }
 

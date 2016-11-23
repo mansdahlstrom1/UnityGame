@@ -26,7 +26,6 @@ public class PlayerInterface : MonoBehaviour {
         if (Player.Username != null)
         {
             db.GetCompletePlayer(Player.Username);
-            Debug.Log(Player.Active_upgrade);
         }
         playerInterface = Resources.Load<GameObject>("Prefabs/Misc/PlayerInterface");
         PlayerShip ps1 = Resources.Load<PlayerShip>("Prefabs/Player/Ships/" + Player.Active_upgrade);
