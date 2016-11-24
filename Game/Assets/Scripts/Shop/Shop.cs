@@ -38,26 +38,27 @@ public class Shop : MonoBehaviour
     {
         modalPanel = ModalPanel.Instance();
         List<Upgrade> upgrades = dbc.GetAllUpgrades();
-        
-        int state = 0;
+        ev = EventSystem.current;
 
         int i = 0, my_x = -300, my_y = 50;
         foreach (Upgrade upgrade in upgrades)
         {
-            //ColorBlock colorBlock = ColorBlock.defaultColorBlock;
+
+            int state = 0;
             if (i % 3 == 0 && i != 0)
             { 
                 my_x = -300;
-                my_y -= 200;
+                my_y -= 110;
             }
 
             foreach (Upgrade u in Player.PlayerUpgrades)
             {
                 if (upgrade.UpgradeName.Equals(u.UpgradeName))
                 {
-                    //colorBlock.normalColor = Colors.vOrange;
-                    state = (int)Utils.UpgradeStates.Owned;
-                }
+                    state = u.UpgradeName == Player.Active_upgrade 
+                        ? (int)Utils.UpgradeStates.Equipped 
+                        : (int)Utils.UpgradeStates.Owned;
+                } 
             }
 
 
@@ -67,7 +68,6 @@ public class Shop : MonoBehaviour
             GameObject up = Instantiate(upgradePane, new Vector3(my_x, my_y), Quaternion.identity, canvas.transform) as GameObject;
 
             ShopButton shopBtn = up.GetComponent<ShopButton>();
-            //shopBtn.myButton.colors.
             shopBtn.upgradeName = upgrade.UpgradeName;
             shopBtn.cost = upgrade.Cost;
             shopBtn.state = state;
@@ -77,7 +77,9 @@ public class Shop : MonoBehaviour
         }
     }
 
-    private void DoNothing() { }
+    private void DoNothing() {
+        EventSystem.current.SetSelectedGameObject(ev.firstSelectedGameObject);
+    }
     private void EquipUpgrade()
     {
         Player.Active_upgrade = upgradeName;
@@ -88,7 +90,6 @@ public class Shop : MonoBehaviour
 
     private void TryBuyUpgrade()
     {
-
         if (Player.Coins >= cost)
         {
             dbc.buyUpgrade(upgradeName);
@@ -108,12 +109,11 @@ public class Shop : MonoBehaviour
     {
 
         modalPanel.enabled = true;
-        //EventSystem.current.SetSelectedGameObject(null);
         setValues(upgradeName, cost, state);
 
         if (state == (int)Utils.UpgradeStates.Equipped)
         {
-            //Debug.Log("Eqippied click!");
+            Debug.Log("Eqippied click!");
         }
         else if (state == (int)Utils.UpgradeStates.Owned)
         {

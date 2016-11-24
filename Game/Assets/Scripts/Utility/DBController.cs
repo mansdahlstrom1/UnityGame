@@ -40,15 +40,6 @@ namespace DBConnector
             pd.GetPlayer();
         }
 
-        public Options GetUserOptions(string username)
-        {
-            string url = BaseURL + "findUserOptions/=" + username;
-            var json = new WebClient().DownloadString(url);
-            OptionData od = JsonUtility.FromJson<OptionData>(json);
-            Options userOptions = od.GetOptions();
-            return userOptions;
-        }
-
         public List<Round> GetPlayerRounds(string username)
         {
             string url = BaseURL + "findUserRounds/" + username;
@@ -96,12 +87,8 @@ namespace DBConnector
         public void GetCompletePlayer(string username)
         {
             GetUserByUsername(username);
-            //Options op = GetUserOptions(username);
             Player.PlayerRounds = GetPlayerRounds(username);
             List<Upgrade> pu = GetPlayerUpgrades(username);
-           
-            // here we need to check a local file for settings;
-            Player.Options = new Options();
       
             if (pu != null)
             {
@@ -173,28 +160,6 @@ namespace DBConnector
             Player.Activty = activity;
             Player.Coins = coins;
             Player.Active_upgrade = active_upgrade;
-        }
-    }
-
-    [Serializable]
-    public class OptionData
-    {
-        public int key_down;
-        public int key_left;
-        public int key_right;
-        public int key_shoot;
-        public int key_up;
-        public int master_sound;
-
-        public Options GetOptions()
-        {
-            Options o = new Options();
-            o.Key_down = key_down;
-            o.Key_left = key_left;
-            o.Key_right = key_right;
-            o.Key_up = key_up;
-            o.Key_shoot = key_shoot;
-            return o;
         }
     }
 

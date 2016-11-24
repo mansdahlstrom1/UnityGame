@@ -7,7 +7,7 @@ using DBConnector;
 using UnityEngine.SceneManagement;
 using UnityEngine.Events;
 
-public class ShopButton : MonoBehaviour, ISelectHandler {
+public class ShopButton : MonoBehaviour {
 
     public Button myButton;
     Shop shop;
@@ -16,17 +16,10 @@ public class ShopButton : MonoBehaviour, ISelectHandler {
     public Text Shipname;
     public Text coins;
     public Image avatar;
-
     // Data
     public string upgradeName;
     public int cost;
     public int state;
-
-    // Remove this
-    DBController dbc;
-
-    // modal panel
-    private ModalPanel modalPanel;
 
     void Start () {
 
@@ -34,25 +27,23 @@ public class ShopButton : MonoBehaviour, ISelectHandler {
 
     public void setValues()
     {
-        dbc = new DBController();
         this.coins.text = cost.ToString();
         this.Shipname.text = upgradeName;
         shop = Shop.Instance();
-        modalPanel = ModalPanel.Instance();
-        Button myButton = GetComponentInChildren<Button>();
+        myButton = GetComponentInChildren<Button>();
         myButton.onClick.AddListener(Click);
+        if (this.state != (int)Utils.UpgradeStates.NotOwned)
+        {
+            ColorBlock colorBlock = myButton.colors;
+            colorBlock.normalColor = Colors.vPurple;
+            myButton.colors = colorBlock;
+        }
         avatar.sprite = Resources.Load<Sprite>("Images/Ships/" + upgradeName);
-
     }
 
     void Click()
     {
         shop.Click(upgradeName, cost, state);
-    }
-
-    public void OnSelect(BaseEventData eventData)
-    {
-        //Debug.Log("Hej knapp");
     }
 
     // Update is called once per frame

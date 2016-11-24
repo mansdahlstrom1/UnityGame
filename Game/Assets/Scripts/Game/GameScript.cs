@@ -48,9 +48,9 @@ public class GameScript : MonoBehaviour
         PlayerShip ps = Resources.Load<PlayerShip>("prefabs/Player/ships/" + Player.Active_upgrade);
         players.Add(ps);
 
-        PlayerShip ps2 = Resources.Load<PlayerShip>("prefabs/Player/ships/" + Player.Active_upgrade);
-        ps2.PlayerNumber = 2;
-        players.Add(ps2);
+        //PlayerShip ps2 = Resources.Load<PlayerShip>("prefabs/Player/ships/" + Player.Active_upgrade);
+        //ps2.PlayerNumber = 2;
+        //players.Add(ps2);
 
         coinsEarned = 0;
         PlayerShip.lives = playerLives;

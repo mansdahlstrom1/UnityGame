@@ -4,63 +4,52 @@ using UnityEngine.UI;
 
 public class PlayerInterface : MonoBehaviour {
 
-    public Texture coins;
-    public string leftText;
-    public string centerText;
-    public string rightText;
+    public Text userName;
+    public Text highScore;
+    public Text coins;
+    public Image avatar;
+    public Image coinsImg;
 
-    GameObject canvas;
-    GameObject playerInterface;
-    private Text[] texts;
-    int sw = Screen.height;
-    int sh = Screen.width;
-    
+    public string horizontalButton;
 
-    DBConnector.DBController db = new DBConnector.DBController();
+	void Start () {
+       
+    }
 
+    public void setPlayer1()
+    {
+        userName.text = Player.Username;
+        coins.text = Player.Coins.ToString();
+        highScore.text = "<b>High Score: <color=#e5c100>" + Player.GetBestScore().ToString() + "</color></b>";
+        coinsImg.sprite = Resources.Load<Sprite>("Images/coins");
+        coinsImg.enabled = true;
+        horizontalButton = "Horizontal_P1";
+        avatar.sprite = Resources.Load<Sprite>("Images/Ships/" + Player.Active_upgrade);
+}
 
-
-    // Use this for initialization
-
-    void Start () {
-        if (Player.Username != null)
-        {
-            db.GetCompletePlayer(Player.Username);
-        }
-        playerInterface = Resources.Load<GameObject>("Prefabs/Misc/PlayerInterface");
-        PlayerShip ps1 = Resources.Load<PlayerShip>("Prefabs/Player/Ships/" + Player.Active_upgrade);
-        PlayerShip ps = Instantiate(ps1, new Vector3(-130,0), Quaternion.identity, playerInterface.transform) as PlayerShip;
-        ps.transform.localScale = new Vector3(0.4f, 0.4f, 1);
-        float width = playerInterface.GetComponent<RectTransform>().rect.width;
-        float height = playerInterface.GetComponent<RectTransform>().rect.height;
-        Vector3 psTransform = new Vector3((width / 2) -800f, (height / 2) -450f);
-
-        ps.ShopMode = true;
-        ps.Disabled = true;
-        Text[] texts = playerInterface.GetComponentsInChildren<Text>();
-        if (Player.Username != null)
-        {   
-            texts[0].text = Player.Username.ToUpper();
-            texts[2].text = Player.Coins.ToString();
-            texts[1].text = "<b>High Score: <color=#e5c100>" + Player.GetBestScore().ToString() + "</color></b>";
-            Instantiate(playerInterface, psTransform, Quaternion.identity, gameObject.transform);
-        }
-        else
-        {
-            
-            texts[0].text = leftText;
-            texts[2].text = rightText;
-            texts[1].text = "<b>High Score: <color=#e5c100>" + Player.GetBestScore().ToString() + "</color></b>";
-
-            Instantiate(playerInterface, psTransform, Quaternion.identity, gameObject.transform);
-
-        }
-
+    public void setMultiPlayer(Multiplayer mp)
+    {
+        userName.text = "Player " + mp.PlayerNumber;
+        highScore.text = " ";
+        coins.text = " ";
+        coinsImg.enabled = false;
+        horizontalButton = "Horizontal_P" + mp.PlayerNumber;
+        avatar.sprite = Resources.Load<Sprite>("Images/Ships/" + mp.Active_upgrade);
+   
+       
     }
 
     // Update is called once per frame
-    void Update () {
-	
-	}
+    void Update()
+    {
+        if (horizontalButton != null)
+        {
+            if (Input.GetButton(horizontalButton))
+            {
+                Debug.Log(Input.GetAxis(horizontalButton));
+                // this.avatar = next image in list;
+            }
 
+        }
+    }
 }
