@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -34,5 +35,30 @@ public class Utils : MonoBehaviour {
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+
+    public static Dictionary<string, Sprite> getPlayerSprites()
+    {
+        Dictionary<string, Sprite> list = new Dictionary<string, Sprite>();
+        foreach(Upgrade u in Player.PlayerUpgrades)
+        {
+            Sprite s = Resources.Load<Sprite>("Images/Ships/" + u.UpgradeName);
+            list.Add(u.UpgradeName, s);
+        }
+        return list;
+    }
+    public static float GetPercentOfScreenH(int percent)
+    {
+        int OnePercent = Camera.main.pixelHeight / 100;
+        Debug.Log(OnePercent);
+        Debug.Log(percent + " (height) = " + OnePercent * percent);
+
+        return OnePercent * percent;
+    }
+    public static float GetPercentOfScreenW(int percent)
+    {
+        int OnePercent = Camera.main.pixelWidth / 100;
+        Debug.Log(percent + " (width) = " + OnePercent * percent);
+        return OnePercent * percent;
     }
 }

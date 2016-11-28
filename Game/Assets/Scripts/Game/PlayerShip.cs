@@ -1,8 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using System;
-using UnityEngine.Events;
 using Assets.Scripts;
 
 public class PlayerShip : Ship
@@ -148,10 +144,21 @@ public class PlayerShip : Ship
         //If the shield is down and you're colliding with an enemy
         if (!isInvulnerable && col.gameObject.tag.Equals("Enemy"))
         {
-            PlayerShip.lives--;
+            lives--;
             isInvulnerable = true;
             deathTime = Time.time;
+        } else
+
+        if (col.gameObject.tag.Equals("Player"))
+        {
+
+            // Vector3 contactPoint = 
+
+            if(transform.position.x > col.transform.position.x)
+            {
+
+                Debug.Log("Collider to the left");
+            }
         }
     }
-
 }

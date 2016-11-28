@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace DBConnector
 {
-    public class DBController
+    public static class DBController
     {
-        private string BaseURL = "http://81.186.252.203/webservice/api.php/v2/";
+        private static string BaseURL = "http://81.186.252.203/webservice/api.php/v2/";
 
-        public List<Upgrade> GetAllUpgrades()
+        public static List<Upgrade> GetAllUpgrades()
         {
             string url = BaseURL + "getAllUpgrades";
             string json = new WebClient().DownloadString(url);
@@ -32,7 +32,7 @@ namespace DBConnector
             return allUpgrades;
         }
 
-        public void GetUserByUsername(string username)
+        public static void GetUserByUsername(string username)
         {
             string url = BaseURL + "findUserByUsername/" + username;
             string json = new WebClient().DownloadString(url);
@@ -40,7 +40,7 @@ namespace DBConnector
             pd.GetPlayer();
         }
 
-        public List<Round> GetPlayerRounds(string username)
+        public static List<Round> GetPlayerRounds(string username)
         {
             string url = BaseURL + "findUserRounds/" + username;
             string json = new WebClient().DownloadString(url);
@@ -62,7 +62,7 @@ namespace DBConnector
             return playerRounds;
         }
 
-        public List<Upgrade> GetPlayerUpgrades(string username)
+        public static List<Upgrade> GetPlayerUpgrades(string username)
         {
             string url = BaseURL + "findUserUpgrades/" + username;
             string json = new WebClient().DownloadString(url);
@@ -84,7 +84,7 @@ namespace DBConnector
             return playerUpgrades;
         }
 
-        public void GetCompletePlayer(string username)
+        public static void GetCompletePlayer(string username)
         {
             GetUserByUsername(username);
             Player.PlayerRounds = GetPlayerRounds(username);
@@ -99,7 +99,7 @@ namespace DBConnector
             }
         }
 
-        public void CreateRound(Round r, string username)
+        public static void CreateRound(Round r, string username)
         {
             string url = BaseURL +
                 "createRound" +
@@ -112,7 +112,7 @@ namespace DBConnector
 
         }
 
-        public void CreateUser(string username, string password)
+        public static void CreateUser(string username, string password)
         {
             Byte[] data = System.Text.Encoding.UTF8.GetBytes(password);
             Byte[] hash = new SHA256CryptoServiceProvider().ComputeHash(data);
@@ -128,18 +128,37 @@ namespace DBConnector
             GetCompletePlayer(username);
         }
 
-        public void buyUpgrade(string upgradeName)
+        public static void buyUpgrade(string upgradeName)
         {
             string url = BaseURL + "buyUpgrade/" + Player.Username + "/" + upgradeName;
             string result = new WebClient().DownloadString(url);
         }
 
-        public void equipUpgrade(string upgradeName)
+        public static void equipUpgrade(string upgradeName)
         {
             string url = BaseURL + "equipUpgrade/" + Player.Username + "/" + upgradeName;
             string result = new WebClient().DownloadString(url);
         }
+
+        public static List<HighScore> getHighScores()
+        {
+            List<HighScore> HighScores = new List<HighScore>();
+            string url = BaseURL + "getHighScores";
+            string json = new WebClient().DownloadString(url);
+            string newJson = "{\"Items\":" + json + "}";
+            HighScoreData[] highScoreList = JsonHelper.FromJson<HighScoreData>(newJson);
+            foreach(HighScoreData hsd in highScoreList)
+            {
+                HighScore h = hsd.getHighScore();
+                HighScores.Add(h);
+            }
+            return HighScores;
+
+
+        } 
     }
+
+
 
     [Serializable]
     public class PersonData
@@ -225,7 +244,7 @@ namespace DBConnector
         {
             Wrapper<T> wrapper = new Wrapper<T>();
             wrapper.Items = array;
-            return UnityEngine.JsonUtility.ToJson(wrapper);
+            return JsonUtility.ToJson(wrapper);
         }
 
         [Serializable]

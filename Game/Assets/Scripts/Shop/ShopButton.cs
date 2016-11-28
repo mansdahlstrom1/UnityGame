@@ -1,11 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEditor;
-using DBConnector;
-using UnityEngine.SceneManagement;
-using UnityEngine.Events;
+
 
 public class ShopButton : MonoBehaviour {
 

@@ -11,7 +11,6 @@ public class Shop : MonoBehaviour
     public GameObject canvas;
     List<GameObject> ships = new List<GameObject>();
     EventSystem ev;
-    private DBController dbc = new DBController();
     private static ModalPanel modalPanel;
     // Use this for initialization
 
@@ -37,7 +36,7 @@ public class Shop : MonoBehaviour
     void Start()
     {
         modalPanel = ModalPanel.Instance();
-        List<Upgrade> upgrades = dbc.GetAllUpgrades();
+        List<Upgrade> upgrades = DBController.GetAllUpgrades();
         ev = EventSystem.current;
 
         int i = 0, my_x = -300, my_y = 50;
@@ -83,7 +82,7 @@ public class Shop : MonoBehaviour
     private void EquipUpgrade()
     {
         Player.Active_upgrade = upgradeName;
-        dbc.equipUpgrade(upgradeName);
+        DBController.equipUpgrade(upgradeName);
 
         Utils.ReloadScene();
     }
@@ -92,7 +91,7 @@ public class Shop : MonoBehaviour
     {
         if (Player.Coins >= cost)
         {
-            dbc.buyUpgrade(upgradeName);
+            DBController.buyUpgrade(upgradeName);
             Player.Coins -= cost;
         }
         else

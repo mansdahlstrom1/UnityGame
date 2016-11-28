@@ -11,7 +11,6 @@ public class GameOverScript : MonoBehaviour
 
     Round playedRound;
 
-    DBController conn = new DBController();
 
     void Start()
     {
@@ -21,7 +20,7 @@ public class GameOverScript : MonoBehaviour
         Score.text = playedRound.Score.ToString();
         Duration.text = playedRound.Duration.ToString();
         Coins.text = playedRound.Coins.ToString();
-        conn.CreateRound(playedRound, Player.Username);
-        conn.GetCompletePlayer(Player.Username);
+        DBController.CreateRound(playedRound, Player.Username);
+        DBController.GetCompletePlayer(Player.Username);
     }
 }

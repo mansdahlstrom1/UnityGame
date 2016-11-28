@@ -64,8 +64,7 @@ public class Login : MonoBehaviour
             {
                 if (Username.Length > 0 && Password.Length > 0)
                 {
-                    DBController controller = new DBController();
-                    controller.GetCompletePlayer(username);
+                    DBController.GetCompletePlayer(username);
 
                     if (Player.Username != null)
                     {
@@ -107,8 +106,7 @@ public class Login : MonoBehaviour
                     ErrorMessage.text = "Entered passwords does not match.";
                     return;
                 }
-                DBController controller = new DBController();
-                controller.CreateUser(Username, Password);
+                DBController.CreateUser(Username, Password);
                 if (Player.Username != null)
                 {
                     ErrorMessage.text = "Account Was created!";

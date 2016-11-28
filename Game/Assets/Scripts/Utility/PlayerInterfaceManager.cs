@@ -5,20 +5,24 @@ public class PlayerInterfaceManager : MonoBehaviour {
 
     public PlayerInterface playerInterface;
     private Dictionary<int, PlayerInterface> multiPlayerPanes;
-	// Use this for initialization
-	void Start () {
+    float padding;
+    float halfSceen;
+
+    // Use this for initialization
+    void Start () {
+
         multiPlayerPanes = new Dictionary<int, PlayerInterface>();
-        playerInterface.setPlayer1();
+        playerInterface.setPlayer1();       
         RecreatePlayerInterface();
-    }
+        }
 
     public void RecreatePlayerInterface()
     {
         foreach (Multiplayer mp in Player.MultiPlayers.Values){
             RectTransform piRect = playerInterface.GetComponent<RectTransform>();
             Vector3 pos = piRect.transform.position;
-            // Ignore stupid calc;
-            pos.x += (piRect.rect.width * (mp.PlayerNumber - 1)) + 100 * (mp.PlayerNumber - 1);
+     
+            pos.x += (piRect.rect.width * (mp.PlayerNumber - 1)) + (piRect.rect.width / 5) * (mp.PlayerNumber - 1);
             PlayerInterface Multiplayer1 = Instantiate(playerInterface, pos, Quaternion.identity, gameObject.transform) as PlayerInterface;
             Multiplayer1.setMultiPlayer(mp);
             multiPlayerPanes.Add(mp.PlayerNumber, Multiplayer1);
@@ -32,7 +36,7 @@ public class PlayerInterfaceManager : MonoBehaviour {
             RectTransform piRect = playerInterface.GetComponent<RectTransform>();
             Vector3 pos = piRect.transform.position;
             // Ignore stupid calc;
-            pos.x += (piRect.rect.width * (mp.PlayerNumber - 1)) + 100 * (mp.PlayerNumber - 1);
+            pos.x += (piRect.rect.width * (mp.PlayerNumber - 1)) + (piRect.rect.width / 5) * (mp.PlayerNumber - 1);
             PlayerInterface Multiplayer1 = Instantiate(playerInterface, pos, Quaternion.identity, gameObject.transform) as PlayerInterface;
             Multiplayer1.setMultiPlayer(mp);
             multiPlayerPanes.Add(mp.PlayerNumber, Multiplayer1);

@@ -28,11 +28,6 @@ public class ModalPanel : MonoBehaviour
         return modalPanel;
     }
 
-    void OnEnable()
-    {
-        Debug.Log("modalPanel OnEnable()");
-    }
-
 
     // Yes/No/Cancel: A string, a Yes event, a No event and Cancel event
     public void Choice(string question, UnityAction yesEvent, UnityAction noEvent, UnityAction cancelEvent)

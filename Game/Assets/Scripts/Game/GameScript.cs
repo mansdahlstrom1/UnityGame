@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.Events;
 using System;
 using System.Collections.Generic;
-using Assets.Scripts;
-using UnityEngine.SceneManagement;
 
 public class GameScript : MonoBehaviour
 {
@@ -20,8 +17,9 @@ public class GameScript : MonoBehaviour
     GUIStyle labelStyle = new GUIStyle();
     // modal panel
     private ModalPanel modalPanel;
+    
     //Player
-    public List<PlayerShip> players = new List<PlayerShip>();
+    //public List<PlayerShip> players = new List<PlayerShip>();
 
     //Boss
     public GameObject boss;
@@ -39,19 +37,35 @@ public class GameScript : MonoBehaviour
     public float enemySpawnRate;
     private float enemyNextSpawn;
 
+    int startPos = 0;
+
     // Use this for initialization
     void Start()
     {
 
-        Debug.Log(Player.Active_upgrade);
-
+        if (Player.MultiPlayers.Count > 0)
+        {
+            startPos = -100 * Player.MultiPlayers.Count;
+        }
+        
         PlayerShip ps = Resources.Load<PlayerShip>("prefabs/Player/ships/" + Player.Active_upgrade);
-        players.Add(ps);
+        
+        PlayerShip ps2 = Instantiate(ps, new Vector3(startPos, -900), Quaternion.identity) as PlayerShip;
+        ps2.PlayerNumber = 1;
 
-        //PlayerShip ps2 = Resources.Load<PlayerShip>("prefabs/Player/ships/" + Player.Active_upgrade);
-        //ps2.PlayerNumber = 2;
-        //players.Add(ps2);
+        startPos += 200;
 
+        foreach (Multiplayer mp in Player.MultiPlayers.Values)
+        {
+            PlayerShip mps = Resources.Load<PlayerShip>("prefabs/Player/ships/" + mp.Active_upgrade);
+            
+            PlayerShip mps2 = Instantiate(mps, new Vector3(startPos, -900), Quaternion.identity) as PlayerShip;
+
+            mps2.PlayerNumber = mp.PlayerNumber;
+
+            startPos += 200;
+        }
+        
         coinsEarned = 0;
         PlayerShip.lives = playerLives;
         roundStart = Time.time;
@@ -59,10 +73,7 @@ public class GameScript : MonoBehaviour
 
         labelStyle.border = new RectOffset(10, 10, 10, 10);
 
-        foreach (PlayerShip ship in players)
-        {
-            Instantiate(ship, new Vector3(0, -900), Quaternion.identity);
-        }
+        
         UnPause();
         labelStyle.fontSize = 22;
     }
@@ -75,7 +86,8 @@ public class GameScript : MonoBehaviour
             if (modalPanel.enabled)
             {
                 PauseGame();
-            } else
+            }
+            else
             {
                 UnPause();
             }
