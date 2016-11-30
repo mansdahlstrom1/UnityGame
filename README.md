@@ -4,11 +4,11 @@ UnityGame is a open source school project created by students studying at the de
 
 
 ## Todo
-* Create account - DONE
-* Sign in - DONE
-* Choose number of players
-* Generate a secutrity token at login in the game. Create a table in database saving the last token used by the user. After we require this token to comfirm that the user is contacting the API from within the game. Right now you can create both rounds and api directly from the browser.
-* encryption:
+- [x] Create account
+- [x] Sign in
+- [x] Choose number of players
+- [ ] Generate a secutrity token at login in the game. Create a table in database saving the last token used by the user. After we require this token to comfirm that the user is contacting the API from within the game. Right now you can create both rounds and api directly from the browser.
+- [ ] encryption:
 
 #### Encryption will have three parts  (key 1)</b>
 - shared key, in both client and API
@@ -17,6 +17,16 @@ UnityGame is a open source school project created by students studying at the de
 
 #### Encryption (key2)
  - Secret key in API creating a hash from password to store in DB
+<pre>
+------               -----------------             --------------
+| DB | ------------- |      API      | ----------- |   Client   |
+------               -----------------             --------------
+Stored               Generate IV (key1)            Get IV from API(key1)
+Hashed               Shared Key (key1)             Shared key (key1)
+Password             Data (key1)                   Data (key1)
+                     Encrypt hash (key2)
+                     Key 2 exclusive for API
+</pre>
 
 ## API Endpoint
 
