@@ -14,9 +14,7 @@ public class GameOverScript : MonoBehaviour
 
     void Start()
     {
-        
-        int latestRoundIndex = Player.PlayerRounds.Count - 1;
-        playedRound = Player.PlayerRounds[latestRoundIndex];
+        playedRound = Player.LatestRound;
         Score.text = playedRound.Score.ToString();
         Duration.text = playedRound.Duration.ToString();
         Coins.text = playedRound.Coins.ToString();

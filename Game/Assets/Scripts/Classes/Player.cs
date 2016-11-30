@@ -10,7 +10,8 @@ public static class Player
     static DateTime created;
     static int coins;
     static string active_upgrade;
-    static List<Round> playerRounds;
+    static Round latestRound;
+    static int highScore;
     static List<Upgrade> playerUpgrades;
     static Dictionary<int, Multiplayer> multiPlayers = new Dictionary<int, Multiplayer>();
 
@@ -20,26 +21,10 @@ public static class Player
     public static DateTime Created { get { return created; } set { created = value; } }
     public static string Active_upgrade { get { return active_upgrade;  } set { active_upgrade = value; } }
     public static string Hash { get { return hash; } set { hash = value; } }
-    public static List<Round> PlayerRounds { get { return playerRounds; } set { playerRounds = value; } }
     public static List<Upgrade> PlayerUpgrades { get { return playerUpgrades; } set { playerUpgrades = value; } }
     public static Dictionary<int, Multiplayer> MultiPlayers { get { return multiPlayers; } set { multiPlayers = value; } }
-
-   
-    public static int GetBestScore()
-    {
-        int bestScore = 0;
-        if(playerRounds != null)
-        {
-            for (var i = 0; i < playerRounds.Count; i++)
-            {
-                if (playerRounds[i].Score > bestScore)
-                {
-                    bestScore = playerRounds[i].Score;
-                }
-            }
-        }
-        return bestScore;
-    }
+    public static Round LatestRound { get { return latestRound; } set { latestRound = value; } }
+    public static int HighScore { get { return highScore; } set { highScore = value; } }
 
     public static bool checkPassword(string password)
     {

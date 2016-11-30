@@ -83,8 +83,6 @@ public class PlayerShip : Ship
         //Shoot
         if (Input.GetAxis("Fire_P" + PlayerNumber) > 0)
             Shoot();
-        //else?
-        //Roll
 
         if (Input.GetAxis("Roll_P" + PlayerNumber) != 0)
         {
@@ -156,8 +154,7 @@ public class PlayerShip : Ship
 
             if(transform.position.x > col.transform.position.x)
             {
-
-                Debug.Log("Collider to the left");
+                velocity.x = -velocity.x;
             }
         }
     }

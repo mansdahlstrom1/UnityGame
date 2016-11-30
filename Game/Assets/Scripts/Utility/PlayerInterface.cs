@@ -26,7 +26,7 @@ public class PlayerInterface : MonoBehaviour
     {
         userName.text = Player.Username;
         coins.text = Player.Coins.ToString();
-        highScore.text = "<b>High Score: <color=#e5c100>" + Player.GetBestScore().ToString() + "</color></b>";
+        highScore.text = "<b>High Score: <color=#e5c100>" + Player.HighScore + "</color></b>";
         coinsImg.sprite = Resources.Load<Sprite>("Images/coins");
         coinsImg.enabled = true;
         horizontalButton = "Horizontal_P1";
@@ -103,4 +103,5 @@ public class PlayerInterface : MonoBehaviour
 
         }
     }
+
 }

@@ -60,7 +60,7 @@ public class GameScript : MonoBehaviour
             PlayerShip mps = Resources.Load<PlayerShip>("prefabs/Player/ships/" + mp.Active_upgrade);
             
             PlayerShip mps2 = Instantiate(mps, new Vector3(startPos, -900), Quaternion.identity) as PlayerShip;
-
+            Debug.Log(mp.Active_upgrade + " Has number : " + mp.PlayerNumber);
             mps2.PlayerNumber = mp.PlayerNumber;
 
             startPos += 200;
@@ -179,7 +179,7 @@ public class GameScript : MonoBehaviour
             r.Score = score;
             r.Duration = (int)Time.time - (int)roundStart;
             r.Coins = coinsEarned;
-            Player.PlayerRounds.Add(r);
+            Player.LatestRound = r;
 
             Utils.ChangeScene("GameOver");
 
