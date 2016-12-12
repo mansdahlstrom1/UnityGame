@@ -33,6 +33,12 @@ namespace DBConnector
         public static List<Upgrade> GetAllUpgrades()
         {
             string url = BaseURL + "getAllUpgrades";
+
+            var cipher = CryptoUtils.Encrypt(url, "12345678");
+
+            Debug.Log("cipher: "+cipher);
+            Debug.Log("decrypted: " + CryptoUtils.Decrypt(cipher, "12345678"));
+
             string json = downloadContent(url);
             if (json == "\"No Upgrades Found\"")
             {
