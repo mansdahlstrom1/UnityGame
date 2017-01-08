@@ -26,9 +26,7 @@ Hashed               Shared Key (key1)             Shared key (key1)
 Password             Data (key1)                   Data (key1)
                      Encrypt hash (key2)
                      Key 2 exclusive for API
-</pre>
-
-## API Endpoint
+</pre> API Endpoint
 
 Currenty at v2:
 
