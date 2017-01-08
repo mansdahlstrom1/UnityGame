@@ -9,36 +9,35 @@ namespace DBConnector
 {
     public static class DBController
     {
-        private static string BaseURL = "http://81.186.252.203/webservice/api.php/v2/";
+        // readonly? const?
+        private static string BaseURL = "http://89.236.61.189:22642/";
+        //private static string BaseURL = "http://81.186.252.203/webservice/api.php/v2/";
 
         public static string downloadContent(string url)
         {
             System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
             timer.Start();
-            WWW www = new WWW(url);
-            Debug.Log("bytes downloaded ("+url+"): " +Utils.convertByte(www.bytesDownloaded) );
-            if(www == null)
-            {
-                Debug.Log("WWW is null");
-            }
-            while (!www.isDone)
-            {
-                Debug.Log("waiting for www request to finish....");
-            }
-            timer.Stop();
-            Debug.Log("Respone Time: " + timer.ElapsedMilliseconds);
-            return www.text;
-        }
 
+            string cipher = CryptoUtils.EncryptNewIV(url);
+
+            var client = new WebClient();
+            var response = client.DownloadString(BaseURL + cipher);
+            
+            var message = response.Substring(0, response.Length - 24);
+            var iv = response.Substring(response.Length - 24);
+            var decipher = CryptoUtils.Decrypt(message, Convert.FromBase64String(iv));
+            
+            timer.Stop();
+            Debug.Log("Response Time: " + timer.ElapsedMilliseconds);
+            Debug.Log("received: " + decipher);
+            
+            return decipher;
+        }
+        
         public static List<Upgrade> GetAllUpgrades()
         {
-            string url = BaseURL + "getAllUpgrades";
-
-            var cipher = CryptoUtils.Encrypt(url, "12345678");
-
-            Debug.Log("cipher: "+cipher);
-            Debug.Log("decrypted: " + CryptoUtils.Decrypt(cipher, "12345678"));
-
+            string url = "getAllUpgrades";
+            
             string json = downloadContent(url);
             if (json == "\"No Upgrades Found\"")
             {
@@ -59,7 +58,7 @@ namespace DBConnector
 
         public static void GetUserByUsername(string username)
         {
-            string url = BaseURL + "findUserByUsername/" + username;
+            string url = "findUserByUsername/" + username;
             string json = downloadContent(url);
             PersonData pd = JsonUtility.FromJson<PersonData>(json);
             pd.GetPlayer();
@@ -67,14 +66,14 @@ namespace DBConnector
 
         public static void GetUserHighScore()
         {
-            string url = BaseURL + "getUserHighScore/" + Player.Username;
+            string url = "getUserHighScore/" + Player.Username;
             string json = downloadContent(url);
             Player.HighScore = int.Parse(json.Split(':')[1].TrimEnd('}')); // Das super ugly hack
         }
 
         public static List<Round> GetPlayerRounds(string username)
         {
-            string url = BaseURL + "findUserRounds/" + username;
+            string url = "findUserRounds/" + username;
             string json = downloadContent(url);
             if (json == "\"No Rounds found\"")
             {
@@ -96,7 +95,7 @@ namespace DBConnector
 
         public static List<Upgrade> GetPlayerUpgrades(string username)
         {
-            string url = BaseURL + "findUserUpgrades/" + username;
+            string url = "findUserUpgrades/" + username;
             string json = downloadContent(url);
             if (json == "\"No Upgrades Found\"") 
             {
@@ -133,7 +132,7 @@ namespace DBConnector
 
         public static void CreateRound(Round r, string username)
         {
-            string url = BaseURL +
+            string url = 
                 "createRound" +
                 "/" + username +
                 "/" + r.Score +
@@ -152,7 +151,7 @@ namespace DBConnector
 
             hashString = hashString.Replace("/", "-");
 
-            string url = BaseURL +
+            string url = 
                 "createUser" +
                 "/" + username +
                 "/" + hashString;
@@ -162,20 +161,20 @@ namespace DBConnector
 
         public static void buyUpgrade(string upgradeName)
         {
-            string url = BaseURL + "buyUpgrade/" + Player.Username + "/" + upgradeName;
+            string url = "buyUpgrade/" + Player.Username + "/" + upgradeName;
             string result = downloadContent(url);
         }
 
         public static void equipUpgrade(string upgradeName)
         {
-            string url = BaseURL + "equipUpgrade/" + Player.Username + "/" + upgradeName;
+            string url = "equipUpgrade/" + Player.Username + "/" + upgradeName;
             string result = downloadContent(url);
         }
 
         public static List<HighScore> getHighScores()
         {
             List<HighScore> HighScores = new List<HighScore>();
-            string url = BaseURL + "getHighScores";
+            string url = "getHighScores";
             string json = downloadContent(url);
             string newJson = "{\"Items\":" + json + "}";
             HighScoreData[] highScoreList = JsonHelper.FromJson<HighScoreData>(newJson);

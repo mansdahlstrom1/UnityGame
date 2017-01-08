@@ -5,9 +5,7 @@ using System.Text;
 
 public static class CryptoUtils
 {
-    internal const string url = "http://89.236.61.189:22642";
     internal const string key = "bxzfHEW80YqDlAURcnrSLzSi5n4hx8nSW5R5A95fBwc=";
-
     private static RNGCryptoServiceProvider random = new RNGCryptoServiceProvider();
 
     private static RijndaelManaged NewRijndaelManaged(Byte[] iv)
