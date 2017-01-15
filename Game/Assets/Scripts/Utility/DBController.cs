@@ -9,7 +9,7 @@ namespace DBConnector
 {
     public static class DBController
     {
-        private static string BaseURL = "http://81.186.252.203/webservice/api.php/v2/";
+        private static string BaseURL = "http://89.236.61.189/webservice/api.php/v2/";
 
         public static string downloadContent(string url)
         {
@@ -33,11 +33,6 @@ namespace DBConnector
         public static List<Upgrade> GetAllUpgrades()
         {
             string url = BaseURL + "getAllUpgrades";
-
-            var cipher = CryptoUtils.Encrypt(url, "12345678");
-
-            Debug.Log("cipher: "+cipher);
-            Debug.Log("decrypted: " + CryptoUtils.Decrypt(cipher, "12345678"));
 
             string json = downloadContent(url);
             if (json == "\"No Upgrades Found\"")
@@ -69,7 +64,14 @@ namespace DBConnector
         {
             string url = BaseURL + "getUserHighScore/" + Player.Username;
             string json = downloadContent(url);
-            Player.HighScore = int.Parse(json.Split(':')[1].TrimEnd('}')); // Das super ugly hack
+            if (json != "null")
+            {
+                Player.HighScore = int.Parse(json.Split(':')[1].TrimEnd('}')); // Das super ugly hack
+            }
+            else
+            {
+                Player.HighScore = 0;
+            }
         }
 
         public static List<Round> GetPlayerRounds(string username)

@@ -1,0 +1,269 @@
+[33mcommit f8a66afcc310389e5d921229178546a9394a3737[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Thu Nov 24 17:52:26 2016 +0100
+
+    Cleaning up code and reworking the playerInterfaces. Now added support for more players joining
+
+[33mcommit b7d8b14db5dd157c96b8068457106d4111e714b4[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Wed Nov 23 17:14:30 2016 +0100
+
+    forgot to save a file
+
+[33mcommit 4b842d01dedb379b59d9bbbd3f9fe6fb177b2fa0[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Wed Nov 23 17:11:51 2016 +0100
+
+    Added more support for Controllers, and maybe broke somethings too....
+
+[33mcommit 4e6b0dbe8978a5dde1a84fe1df2dcae711134795[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Mon Nov 21 18:15:02 2016 +0100
+
+    Updates and imporvemnts to code base, Scenes and scripts not used are now deleted. Login, Main Menu & Shop scenes are now properly reworked
+
+[33mcommit 97b839a5faff54ba9025dd575121993ea687b662[m
+Author: pontus <pontusmolin@me.com>
+Date:   Mon Nov 21 10:43:17 2016 +0100
+
+    modal menu!
+
+[33mcommit 5ef15f5f8388ed475bea0b6650b7311aee67df65[m
+Author: pontus <pontusmolin@me.com>
+Date:   Wed Oct 26 15:31:30 2016 +0200
+
+    shop works! o.2 is live
+
+[33mcommit a9bbb45663bbebc4081de57c0b73a42a39b26f88[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Wed Oct 26 12:06:38 2016 +0200
+
+    changed scene resolutions
+
+[33mcommit c488085d6d2e7310c3d0a2d3492ea74b507b7305[m
+Author: pontus <pontusmolin@me.com>
+Date:   Wed Oct 26 11:37:23 2016 +0200
+
+    killing enemies now gives coins
+
+[33mcommit ce269f28f9fdb5df18826c68af074c18531e1300[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Tue Oct 25 17:45:23 2016 +0200
+
+    Added PlayerInterface and small fixes to make the game more dynamic with DB connection.
+
+[33mcommit ee25db24c5bd4879d9bff9c0eda77461c02086a6[m
+Author: pontus <pontusmolin@me.com>
+Date:   Tue Oct 25 14:42:40 2016 +0200
+
+    changes to shop and shop buttons
+
+[33mcommit fd6d1a2a1ae14581581eb99b327134a63f70cb6e[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Tue Oct 25 11:28:45 2016 +0200
+
+    new changes to DBcontroller
+
+[33mcommit 1f6bc251d979727de60c1d0f00db91f2afd2452d[m
+Author: Poliky4 <poliky44@hotmail.com>
+Date:   Mon Oct 24 17:34:22 2016 +0200
+
+    fixed game scene, players can now lose again
+
+[33mcommit b7b85482750ddfa0493ce46b83dd6d246d17b745[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Mon Oct 24 11:24:59 2016 +0200
+
+    Added GetAllUpgrades functions toDBController
+
+[33mcommit f7fac43822a0ba75c9ed303e01153b4148f0e38e[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Sun Oct 23 20:34:25 2016 +0200
+
+    Update README.md
+
+[33mcommit c3f442f0d45482d454de8aa8e188e72283dd0b71[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Sun Oct 23 20:33:00 2016 +0200
+
+    Update README.md
+
+[33mcommit 347e33550b9bfe94949e3deb19ef5372be5c20f3[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Sun Oct 23 20:31:58 2016 +0200
+
+    Update README.md
+
+[33mcommit 73a7eb9d9509714cf1ed906b2de25bdd804c5fca[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Sun Oct 23 20:30:15 2016 +0200
+
+    Update README.md
+
+[33mcommit 793d1817502a9182d73bdc9977408f11cfd5cbb1[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Sun Oct 23 20:28:32 2016 +0200
+
+    Added more documentation regarding API
+
+[33mcommit 62d07abedced91b592ca92c98072ac3a98289e67[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Sun Oct 23 12:36:08 2016 +0200
+
+    Update README.md
+
+[33mcommit 952389293b9b856f600d1f30c199806bb9f4b139[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Sun Oct 23 12:34:41 2016 +0200
+
+    Update README.md
+
+[33mcommit 200fefde37eeddac63c81ee0f3da68a2d58e016f[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Sun Oct 23 12:34:12 2016 +0200
+
+    Added readme for API Endpoints
+    
+    some api endpoint information
+
+[33mcommit 44e1cfee1acdb4df19a49b8905b41d8c5323a6ec[m
+Author: pontus <pontusmolin@me.com>
+Date:   Thu Oct 20 16:40:00 2016 +0200
+
+    removed game build (.exe) from repo
+
+[33mcommit efbb48ce6b1846657c38dba05168216a44e0e153[m
+Author: pontus <pontusmolin@me.com>
+Date:   Thu Oct 20 16:30:38 2016 +0200
+
+    more work on shop, navigation between buttons in gui fixed
+
+[33mcommit fd1c59cd2dd0c8b26fad2b6f0202b2c2987504c6[m
+Author: pontus <pontusmolin@me.com>
+Date:   Wed Oct 19 18:33:41 2016 +0200
+
+    forgot to add all files
+
+[33mcommit bfb483c8bb469cc95cbb2190933a823f2463e234[m
+Author: pontus <pontusmolin@me.com>
+Date:   Wed Oct 19 18:25:57 2016 +0200
+
+    created new interface for shop scene
+
+[33mcommit 0bb3f4db38b657ba376459c2133e21138dba7ec4[m
+Merge: 5e32663 5eee61c
+Author: pontus <pontusmolin@me.com>
+Date:   Wed Oct 19 14:16:34 2016 +0200
+
+    merge errors, blame pontus
+
+[33mcommit 5e326636a3001ddcba6f42c612691f9f9505e3a0[m
+Author: pontus <pontusmolin@me.com>
+Date:   Wed Oct 19 14:14:05 2016 +0200
+
+    more work in progress
+
+[33mcommit 952e4c42fd4fc2d53bfe80d3b268f8ae16e2c93f[m
+Author: pontus <pontusmolin@me.com>
+Date:   Wed Oct 19 14:13:35 2016 +0200
+
+    Working progress
+
+[33mcommit 297fdcd659fbafca5aa38a201e698976052d4dd3[m
+Author: pontus <pontusmolin@me.com>
+Date:   Sat Oct 8 17:21:35 2016 +0200
+
+    started on making number of players dynamic
+
+[33mcommit 5eee61ce7395312484aacdc299002e1a14293529[m
+Author: pontus <pontusmolin@me.com>
+Date:   Sat Oct 8 17:21:35 2016 +0200
+
+    started on making number of players dynamic
+
+[33mcommit 609db1a9ddd555ae4b744541079d8829e25b3285[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Fri Oct 7 20:46:05 2016 +0200
+
+    added Shop scene
+
+[33mcommit 740721dc23bdbb6c33fca9fb92ec1e12daf3c17c[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Fri Oct 7 15:21:41 2016 +0200
+
+    fixed static class for Player, and fixed the POST to database for end game results
+
+[33mcommit f66d0d6de7f2f6b1851e9863781e320efcc04445[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Fri Sep 16 15:25:49 2016 +0200
+
+    Update README.md
+
+[33mcommit 2f6c6e79d468e503dd30cfbed0afc354fd9707a5[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Fri Sep 16 15:24:46 2016 +0200
+
+    Added wokring createAccount Feature and login with hashed passwords
+
+[33mcommit 728a82963ed6ea8b078c0b34ca2c56dfc1e9b1e9[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Wed Sep 14 21:18:22 2016 +0200
+
+    Design fixes and prep for login/createPassword scene
+
+[33mcommit f19fe0fd9ffda5e5328d8dc70e1939ced1524da2[m
+Merge: 2fe862e 7d6ce29
+Author: pontus <pontusmolin@me.com>
+Date:   Wed Sep 14 16:54:13 2016 +0200
+
+    Merge branch 'master' of https://github.com/mansdahlstrom1/UnityGame
+
+[33mcommit 2fe862e6bdb3b117bb70a72de438cde521cabb36[m
+Author: pontus <pontusmolin@me.com>
+Date:   Wed Sep 14 16:47:09 2016 +0200
+
+    changes to .gitignore
+
+[33mcommit 7d6ce2913620c70b63f4d7bb7c550fc113faada6[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Wed Sep 14 16:44:30 2016 +0200
+
+    Update README.md
+
+[33mcommit 11d2212f9d2d36799b6b3bc82ea8dd73e3e19ea1[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Wed Sep 14 16:41:59 2016 +0200
+
+    Update README.md
+
+[33mcommit 64ca4febba72ea7b7365f7b1d71389135c3d6471[m
+Author: Måns Dahlström <mans@mansdahlstrom.se>
+Date:   Sat Sep 10 22:03:10 2016 +0200
+
+    fixed z values for login screen
+
+[33mcommit ef2039f63abbfe4de949d82ae3670e6755d5b665[m
+Author: Poliky4 <poliky44@hotmail.com>
+Date:   Tue Aug 23 11:25:09 2016 +0200
+
+    bugfix, players didnt lose lives
+
+[33mcommit bab7e5575696790f5ed87d76a09bd9b04f16a95d[m
+Author: Poliky4 <poliky44@hotmail.com>
+Date:   Tue Aug 23 11:14:59 2016 +0200
+
+    input improved, invincible boss bugg fixed, NEW FUNCTIONALITY prototype: dash with bumpers, NEW boss 'missiles' with some AI. and more
+
+[33mcommit 677e14401d4318255a61c09e8254685723d7ff73[m
+Author: mans <mans@mansdahlstrom.se>
+Date:   Tue Aug 23 10:08:43 2016 +0100
+
+    login scene
+
+[33mcommit 341b61a1e662c5114837fec6e26280535bcf14d2[m
+Author: mans <mans@mansdahlstrom.se>
+Date:   Fri Aug 19 16:14:22 2016 +0100
+
+    new Login design!
+
+[33mcommit 8328d83f14
