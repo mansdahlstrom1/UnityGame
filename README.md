@@ -5,7 +5,9 @@ UnityGame is a open source school project created by students studying at the de
 # Develop
 
 Getting started with Unity:
+
 Download Unity 5.40
+
 Download the source code from github.
 
 You are good to go!
