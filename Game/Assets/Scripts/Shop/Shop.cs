@@ -37,6 +37,7 @@ public class Shop : MonoBehaviour
     {
         modalPanel = ModalPanel.Instance();
         List<Upgrade> upgrades = DBController.GetAllUpgrades();
+        DBController.GetCompletePlayer(Player.Username);
         ev = EventSystem.current;
 
         int i = 0, my_x = -300, my_y = 50;
@@ -77,7 +78,7 @@ public class Shop : MonoBehaviour
     }
 
     private void DoNothing() {
-        EventSystem.current.SetSelectedGameObject(ev.firstSelectedGameObject);
+        //EventSystem.current.SetSelectedGameObject(ev.firstSelectedGameObject);
     }
     private void EquipUpgrade()
     {

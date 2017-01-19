@@ -164,14 +164,20 @@ namespace DBConnector
 
         public static void buyUpgrade(string upgradeName)
         {
+            upgradeName = upgradeName.Replace(" ", "%20");
             string url = BaseURL + "buyUpgrade/" + Player.Username + "/" + upgradeName;
+            Debug.Log(url);
             string result = downloadContent(url);
+            Debug.Log(result);
         }
 
         public static void equipUpgrade(string upgradeName)
         {
+            upgradeName = upgradeName.Replace(" ", "%20");
             string url = BaseURL + "equipUpgrade/" + Player.Username + "/" + upgradeName;
+            Debug.Log(url);
             string result = downloadContent(url);
+            Debug.Log(result);
         }
 
         public static List<HighScore> getHighScores()
