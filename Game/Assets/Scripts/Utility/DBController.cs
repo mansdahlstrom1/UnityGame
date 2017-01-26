@@ -9,7 +9,7 @@ namespace DBConnector
 {
     public static class DBController
     {
-        private static string BaseURL = "http://89.236.61.189/webservice/api.php/v2/";
+        private static string BaseURL = "http://89.236.60.99/webservice/api.php/v2/";
 
         public static string downloadContent(string url)
         {
